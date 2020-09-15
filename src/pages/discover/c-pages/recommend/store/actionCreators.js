@@ -1,6 +1,6 @@
 import * as constants from './constants'
 
-import {getTopBanner} from '@/services/recommend'
+import {getTopBanner,getHotReommend} from '@/services/recommend'
 
 export const changeTopBannerAction=(res)=>({
   type:constants.CHANGE_TOP_BANNERS,
@@ -15,3 +15,18 @@ export const getTopbannerAction =()=>{
     })
   }
 }
+
+
+export const getHotRecommendsAction =()=>{
+  return dispatch =>{
+    getHotReommend().then(res=>{
+      console.log(res)
+      dispatch(changeHotRecommendsAction(res))
+    })
+  }
+}
+
+export const changeHotRecommendsAction=(res)=>({
+  type:constants.CHANGE_HOT_RECOMMEND,
+  hotRecommends:res.result
+})
