@@ -4,6 +4,9 @@ import TopBanners from './c-cpns/banner'
 import HotRecommend from './c-cpns/hot-recommend'
 import NewAblum from './c-cpns/new-album'
 import Ranking from './c-cpns/ranking'
+import HotAnchor from './c-cpns/hot-anchor'
+import UserLogin from './c-cpns/user-login'
+import SettleSinger from './c-cpns/settle-singer'
 
 import {RecommendWrapper,Content,RecommendLeft,RecommendRight} from './style'
 
@@ -19,7 +22,11 @@ function Recommend(props) {
           <NewAblum/>
           <Ranking/>
         </RecommendLeft>
-        <RecommendRight></RecommendRight>
+        <RecommendRight>
+          <UserLogin/>
+          <SettleSinger/>
+          <HotAnchor/>
+        </RecommendRight>
       </Content>
     </RecommendWrapper>
   )

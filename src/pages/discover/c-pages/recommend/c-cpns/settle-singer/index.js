@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 
-export default memo(function Player() {
+export default memo(function SettleSinger() {
   return (
     <div>
-      Player
+      <h2>SettleSinger</h2>
     </div>
   )
 })

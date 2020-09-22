@@ -8,7 +8,7 @@ import Songs from '../pages/discover/c-pages/songs'
 import Djradio from '../pages/discover/c-pages/djradio'
 import Artist from '../pages/discover/c-pages/artist'
 import Album from '../pages/discover/c-pages/album'
-import Player from '../pages/discover/c-pages/player'
+import Player from '../pages/player'
 import Friend from "../pages/friend";
 import Mine from "../pages/mine";
 
