@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, Suspense } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import { Provider } from 'react-redux'
@@ -16,9 +16,12 @@ export default memo(function App() {
     <Provider store={store}>
       <BrowserRouter>
         <AppHeader />
-        {renderRoutes(routes)}
+        {/* 路由懒加载所需要的组件 */}
+        <Suspense fallback={<div>pageLoading</div>}>
+          {renderRoutes(routes)}
+        </Suspense>
         <AppFooter />
-        <AppPlayerBar/>
+        <AppPlayerBar />
       </BrowserRouter>
     </Provider>
   )
