@@ -1,6 +1,6 @@
 import * as constants from './constants'
 
-import { getTopBanner, getHotReommend, getAlbum, getTopList } from '@/services/recommend'
+import { getTopBanner, getHotReommend, getAlbum, getTopList,getArtistList } from '@/services/recommend'
 
 export const changeTopBannerAction = (res) => ({
   type: constants.CHANGE_TOP_BANNERS,
@@ -79,3 +79,17 @@ export const changeOriginRakingAction = (res) => ({
   type: constants.CHANGE_ORIGIN_RANKING,
   originRanking: res.playlist
 })
+
+const changeSettleSingsAction = (res) => ({
+  type: constants.CHANGE_SETTLE_SONGER,
+  settleSings: res.artists
+})
+
+
+export const getSettleSingers = () => {
+  return dispath => {
+    getArtistList(5, 5001).then(res => {
+      dispath(changeSettleSingsAction(res))
+    })
+  }
+}

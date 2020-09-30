@@ -4,6 +4,8 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import { Slider, message } from "antd"
 import { PlaybarWrapper, Operator, PlayInfo, Control } from './style'
 
+import AppPlayPanel from '../app-player-panel'
+
 import { getSongDetailAction, changeSequenceAction, changeCurrentSong, changeCurLyricIndexAction } from '../store/actionCreator'
 
 import { getSizeImage, formatMinuteSecond, getPlaySong } from '@/utils/format-utils.js'
@@ -13,32 +15,39 @@ export default memo(function AppPlayerBar() {
   const [progress, setProgress] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLocking, setIsLocking] = useState(false);
+  const [volume, setVolume] = useState(0.8);
+  const [isShowVolume, setIsShowVolume] = useState(false);
+  const [showPanel, setShowPanel] = useState(false);
+  const [playbarWrapperBottom, setPlaybarWrapperBottom] = useState({ bottom: "-45px" });
 
   const dispatch = useDispatch();
 
-  const { currentSong, sequence, lyricList, curLyricIndex } = useSelector(state => ({
+  const { currentSong, sequence, lyricList, playList, curLyricIndex } = useSelector(state => ({
     currentSong: state.getIn(["player", "currentSong"]),
     sequence: state.getIn(["player", "sequence"]),
     lyricList: state.getIn(["player", "lyricList"]),
+    playList: state.getIn(["player", "playList"]),
     curLyricIndex: state.getIn(["player", "curLyricIndex"]),
   }), shallowEqual)
 
 
   const audioRef = useRef();
   useEffect(() => {
-    dispatch(getSongDetailAction(467952048))
-  }, [dispatch]);
+    dispatch(getSongDetailAction(currentSong.id))
+  }, [dispatch, currentSong]);
   useEffect(() => {
-    audioRef.current.src = getPlaySong(currentSong.id);
+    if (currentSong.id) audioRef.current.src = getPlaySong(currentSong.id);
     audioRef.current.play().then(res => {
       setIsPlaying(true)
     }).catch(err => {
+      if (Object.keys(currentSong).length) message.error('当前歌曲无版权或音源不可用，请切换下一首歌曲', 5);
       setIsPlaying(false)
     })
   }, [currentSong])
 
   const picUrl = (currentSong.al && currentSong.al.picUrl) || "";
-  const singerName = (currentSong.ar && currentSong.ar[0].name) || "未知歌手";
+  const singerName = (currentSong.ar && currentSong.ar[0].name) || "";
   const duration = currentSong.dt || 0;
   const showDuration = formatMinuteSecond(duration);
 
@@ -64,16 +73,18 @@ export default memo(function AppPlayerBar() {
     }
 
     //优化性能，不会评分调用changeCurLyricIndexAction，只有index发生改变的时候才调用
+    //因为有了歌词面板展示，所以这里不展示了
     if (curLyricIndex !== i - 1) {
       dispatch(changeCurLyricIndexAction(i - 1))
-      console.log(lyricList[i - 1])
-      const content = lyricList[i - 1] && lyricList[i - 1].content;
-      message.open({
-        content,
-        duration: 0,
-        key: "lyric",
-        className: "lyric-class"
-      })
+      // const content = lyricList[i - 1] && lyricList[i - 1].content;
+      // if (content) {
+      //   message.open({
+      //     content,
+      //     duration: 0,
+      //     key: "lyric",
+      //     className: "lyric-class"
+      //   })
+      // }
     }
   }
 
@@ -82,6 +93,12 @@ export default memo(function AppPlayerBar() {
     setProgress(value);
     setCurrentTime(value / 100 * duration);
   }, [duration])
+
+
+  const handleVolumeChange = useCallback((value) => {
+    audioRef.current.volume = value / 100;
+    setVolume(value / 100)
+  }, [])
 
 
   const handleAfterChange = useCallback((value) => {
@@ -102,6 +119,7 @@ export default memo(function AppPlayerBar() {
   }
 
   const handleMusicEnd = () => {
+    setProgress(0);
     //单曲循环
     if (sequence === 2) {
       audioRef.current.currentTime = 0;
@@ -111,18 +129,30 @@ export default memo(function AppPlayerBar() {
     }
   }
 
+  const setPlaybarWrapperStyle = (flag) => {
+    if (isLocking || flag) {
+      setPlaybarWrapperBottom({ bottom: "0" })
+    } else {
+      setPlaybarWrapperBottom({ bottom: "-45px" })
+    }
+  }
+
   return (
-    <PlaybarWrapper className="sprite_player">
+    <PlaybarWrapper
+      className="sprite_player"
+      style={playbarWrapperBottom}
+      onMouseOver={() => setPlaybarWrapperStyle(true)}
+      onMouseOut={() => setPlaybarWrapperStyle(false)}>
       <div className="content wrap-v2">
         <Control isPlaying={isPlaying}>
-          <button className="sprite_player prev" onClick={e => changeMusic(-1)}></button>
-          <button className="sprite_player play" onClick={() => PlayMusic()}></button>
-          <button className="sprite_player next" onClick={e => changeMusic(1)}></button>
+          <button className="sprite_player prev" onClick={e => changeMusic(-1)} title="上一首"></button>
+          <button className="sprite_player play" onClick={() => PlayMusic()} title="播放/暂停"></button>
+          <button className="sprite_player next" onClick={e => changeMusic(1)} title="下一首"></button>
         </Control>
         <PlayInfo>
           <div className="image">
-            <NavLink to="/discover/player">
-              <img src={getSizeImage(picUrl, 35)} alt="" />
+            <img src={picUrl ? getSizeImage(picUrl, 35) : require('@/assets/img/default_album.jpg')} className={picUrl ? "" : "default_album"} alt="" />
+            <NavLink to="/discover/player" className={picUrl ? "" : "sprite_player placeholderImg"}>
             </NavLink>
           </div>
           <div className="info">
@@ -142,17 +172,31 @@ export default memo(function AppPlayerBar() {
         </PlayInfo>
         <Operator sequence={sequence}>
           <div className="left">
-            <button className="sprite_player btn favor"></button>
-            <button className="sprite_player btn share"></button>
+            <button className="sprite_player btn favor" title="收藏"></button>
+            <button className="sprite_player btn share" title="分享"></button>
           </div>
           <div className="right sprite_player">
-            <button className="sprite_player btn volume"></button>
-            <button className="sprite_player btn loop" onClick={() => changeSequence()}></button>
-            <button className="sprite_player btn playlist"></button>
+            <div className="volume-slider" style={{ display: isShowVolume ? "block" : "none" }}>
+              <div className="bg sprite_player"></div>
+              <Slider tooltipVisible={false} value={volume * 100} onChange={handleVolumeChange} vertical />
+            </div>
+            <button className="sprite_player btn volume" onClick={() => setIsShowVolume(!isShowVolume)}></button>
+            <button className="sprite_player btn loop" onClick={() => changeSequence()} title={sequence === 0 ? "循环" : (sequence === 1 ? "随机" : "单曲循环")}></button>
+            <button className="sprite_player btn playlist" title="播放列表" onClick={() => setShowPanel(!showPanel)}>{playList.length}</button>
           </div>
         </Operator>
       </div>
       <audio ref={audioRef} onTimeUpdate={UpdateTime} onEnded={handleMusicEnd} />
+      <div className="updn">
+        <div className="updown sprite_player">
+          <span onClick={() => setIsLocking(!isLocking)} className={isLocking ? "btn sprite_player lock" : "btn sprite_player unlock"}></span>
+        </div>
+      </div>
+      <div
+        className="hand"
+        onMouseOver={() => setPlaybarWrapperStyle(true)}
+        onMouseOut={() => setPlaybarWrapperStyle(false)}></div>
+      {showPanel && <AppPlayPanel />}
     </PlaybarWrapper>
   )
 })

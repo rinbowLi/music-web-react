@@ -2,7 +2,9 @@ import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { getSizeImage } from '@/utils/format-utils';
+import { getPlayListDetail } from "../../services/play-list"
 import { getSongDetailAction } from '@/pages/player/store';
+import { changeCurrentPlayListAction } from '../../pages/player/store/actionCreator'
 
 import { TopRankingWrapper } from './style';
 
@@ -19,6 +21,13 @@ export default memo(function HYTopRanking(props) {
     dispatch(getSongDetailAction(item.id));
   }
 
+  const getAndPlayList = (id) => {
+    getPlayListDetail(id).then(res => {
+      dispatch(changeCurrentPlayListAction(res.playlist.tracks));
+      dispatch(getSongDetailAction(res.playlist.tracks[0].id));
+    })
+  }
+
   return (
     <TopRankingWrapper>
       <div className="header">
@@ -29,7 +38,7 @@ export default memo(function HYTopRanking(props) {
         <div className="info">
           <a href="/todo">{info.name}</a>
           <div>
-            <button className="btn play sprite_02"></button>
+            <button className="btn play sprite_02" title="播放" onClick={() => getAndPlayList(info.id)}></button>
             <button className="btn favor sprite_02"></button>
           </div>
         </div>

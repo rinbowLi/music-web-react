@@ -10,6 +10,7 @@ export const getSongDetailAction = (ids) => {
     let song = null;
     //如果存在的话那就只要改变当前index就好
     if (songIndex !== -1) {
+      console.log(songIndex)
       dispatch(changeCurrentSongIndexAction(songIndex));
       dispatch(changeCurrentSongAction(playList[songIndex]))
       //3.获取歌词
@@ -76,7 +77,7 @@ const changeCurrentSongIndexAction = (currentSongIndex) => ({
 })
 
 
-const changeCurrentPlayListAction = (playList) => ({
+export const changeCurrentPlayListAction = (playList) => ({
   type: constants.CHANGE_PLAY_LIST,
   playList
 })
@@ -90,8 +91,10 @@ export const changeSequenceAction = (sequence) => ({
 export const getLyricAction = (id) => {
   return dispatch => {
     getLyric(id).then(res => {
-      const lyricList = parseLyric(res.lrc.lyric)
-      dispatch(changeLyricAction(lyricList))
+      if(res.lrc){
+        const lyricList = parseLyric(res.lrc.lyric)
+        dispatch(changeLyricAction(lyricList))
+      }
     })
   }
 }
