@@ -1,9 +1,15 @@
-import React, { memo } from 'react'
+import React, { memo } from 'react';
+
+import { MineWrapper } from './style';
 
 export default memo(function Mine() {
   return (
-    <div>
-      这是我的音乐的内容
-    </div>
+    <MineWrapper>
+      <div className="content wrap-v2">
+        <div className="pic">
+          <a className="login" href="/#">立即登录</a>
+        </div>
+      </div>
+    </MineWrapper>
   )
 })
