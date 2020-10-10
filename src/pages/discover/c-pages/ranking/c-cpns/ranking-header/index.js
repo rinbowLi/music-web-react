@@ -3,12 +3,12 @@ import { useSelector, shallowEqual } from "react-redux";
 
 import { formatMonthDay } from "@/utils/format-utils";
 
-import HYSongOperationBar from '@/components/song-operation-bar';
+import SongOperationBar from '@/components/song-operation-bar';
 import {
   RankingHeaderWrapper
 } from './style';
 
-export default memo(function HYRankingHeader() {
+export default memo(function RankingHeader() {
   // redux
   const state = useSelector(state => ({
     playList: state.getIn(["ranking", "playList"]),
@@ -28,10 +28,11 @@ export default memo(function HYRankingHeader() {
           <div>最近更新：{formatMonthDay(topInfo.updateTime)}</div>
           <div className="update-f">（{"每日更新:TODO"}）</div>
         </div>
-        <HYSongOperationBar favorTitle={`(${topInfo.subscribedCount})`}
+        <SongOperationBar favorTitle={`(${topInfo.subscribedCount})`}
                             shareTitle={`(${topInfo.shareCount})`}
                             downloadTitle="下载"
-                            commentTitle={`(${topInfo.commentCount})`}/>
+                            commentTitle={`(${topInfo.commentCount})`}
+                            id={topInfo.id}/>
       </div>
     </RankingHeaderWrapper>
   )

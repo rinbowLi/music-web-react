@@ -8,7 +8,7 @@ import { getSongDetailAction, changeCurrentPlayListAction } from '../../pages/pl
 
 import { SongsCoverWrapper } from './style';
 
-export default memo(function HYSongsCover(props) {
+export default memo(function SongsCover(props) {
   const { info } = props;
   const dispatch = useDispatch();
 

@@ -18,3 +18,13 @@ export function getAlbumDetail(id){
     }
   })
 }
+
+
+export function getPlaylistDetail(id){
+  return request({
+    url:'/playlist/detail',
+    params:{
+      id
+    }
+  })
+}

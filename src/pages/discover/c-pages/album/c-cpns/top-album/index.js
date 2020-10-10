@@ -10,7 +10,7 @@ import {
   TopAlbumWrapper
 } from './style';
 
-export default memo(function HYTopAlbum() {
+export default memo(function TopAlbum() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const { topAlbums, total } = useSelector(state => ({

@@ -7,7 +7,7 @@ import {
   HeaderRight
 } from './style';
 
-export default memo(function HYPlayHeader() {
+export default memo(function PlayHeader() {
   const { playList, currentSong } = useSelector(state => ({
     playList: state.getIn(["player", "playList"]),
     currentSong: state.getIn(["player", "currentSong"])

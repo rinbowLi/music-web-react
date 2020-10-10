@@ -3,6 +3,9 @@ import styled from 'styled-components';
 export const OperationBarWrapper = styled.div`
   display: flex;
   align-items: center;
+  button{
+    padding:0;
+  }
 
   .play {
     display: flex;
@@ -21,6 +24,7 @@ export const OperationBarWrapper = styled.div`
         align-items: center;
         padding: 0 7px 0 8px;
         background-position: 0 -387px;
+        cursor: pointer;
 
         i {
           display: inline-block;
@@ -40,6 +44,7 @@ export const OperationBarWrapper = styled.div`
       padding-right: 0;
       background-position: 0 -1588px;
       text-indent: -9999px;
+      cursor: pointer;
     }
   }
 
@@ -60,18 +65,22 @@ export const OperationBarWrapper = styled.div`
 
     .favor-icon {
       background-position: 0 -977px;
+      cursor: pointer;
     }
 
     .share-icon {
       background-position: 0 -1225px;
+      cursor: pointer;
     }
 
     .download-icon {
       background-position: 0 -2761px;
+      cursor: pointer;
     }
 
     .comment-icon {
       background-position: 0 -1465px;
+      cursor: pointer;
     }
   }
 `

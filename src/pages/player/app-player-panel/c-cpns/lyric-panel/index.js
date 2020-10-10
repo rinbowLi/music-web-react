@@ -6,7 +6,7 @@ import { scrollTo } from "@/utils/ui-helper";
 
 import { PannelWrapper } from './style';
 
-export default memo(function HYLyricPanel() {
+export default memo(function LyricPanel() {
   const { lyricList, curLyricIndex } = useSelector(state => ({
     lyricList: state.getIn(["player", "lyricList"]),
     curLyricIndex: state.getIn(["player", "curLyricIndex"])

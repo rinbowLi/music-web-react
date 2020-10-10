@@ -9,7 +9,7 @@ import {
   ThemeCoverWrapper
 } from "./style";
 
-export default memo(function HYThemeCover(props) {
+export default memo(function ThemeCover(props) {
   const { info, right } = props;
 
   return (

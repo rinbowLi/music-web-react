@@ -9,7 +9,7 @@ import {
   TopMenu
 } from './style';
 
-export default memo(function HYDiscover(props) {
+export default memo(function Discover(props) {
   const { route } = props;
 
   return (

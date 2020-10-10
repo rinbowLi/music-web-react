@@ -77,6 +77,7 @@ export const RankingListWrapper = styled.div`
             width: 17px;
             height: 17px;
             background-position: 0 -103px;
+            cursor: pointer;
           }
 
           .name {

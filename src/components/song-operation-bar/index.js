@@ -1,33 +1,45 @@
 import React, { memo } from 'react';
 
 import { OperationBarWrapper } from './style';
+import { useDispatch } from "react-redux"
+import { getPlaylistDetail } from "../../services/play-list"
+import { getSongDetailAction, changeCurrentPlayListAction } from '../../pages/player/store/actionCreator'
 
-export default memo(function HYSongOperationBar(props) {
-  const { favorTitle, shareTitle, downloadTitle, commentTitle } = props;
+export default memo(function SongOperationBar(props) {
+  const { favorTitle, shareTitle, downloadTitle, commentTitle, id } = props;
+  const dispatch = useDispatch();
+
+  const getAndPlayList = (id) => {
+    getPlaylistDetail(id).then(res => {
+      console.log(res)
+      dispatch(changeCurrentPlayListAction(res.playlist.tracks));
+      dispatch(getSongDetailAction(res.playlist.tracks[0].id));
+    })
+  }
 
   return (
     <OperationBarWrapper>
       <span className="play">
-        <a href="/abc" className="play-icon sprite_button">
+        <button onClick={() => getAndPlayList(id)} className="play-icon sprite_button">
           <span className="play sprite_button">
             <i className="sprite_button"></i>
             <span>播放</span>
           </span>
-        </a>
-        <a href="/abc" className="add-icon sprite_button">+</a>
+        </button>
+        <button className="add-icon sprite_button">+</button>
       </span>
-      <a href="/abc" className="item sprite_button">
+      <button className="item sprite_button">
         <i className="icon favor-icon sprite_button">{favorTitle}</i>
-      </a>
-      <a href="/abc" className="item sprite_button">
+      </button>
+      <button  className="item sprite_button">
         <i className="icon share-icon sprite_button">{shareTitle}</i>
-      </a>
-      <a href="/abc" className="item sprite_button">
+      </button>
+      <button className="item sprite_button">
         <i className="icon download-icon sprite_button">{downloadTitle}</i>
-      </a>
-      <a href="/abc" className="item sprite_button">
+      </button>
+      <button className="item sprite_button">
         <i className="icon comment-icon sprite_button">{commentTitle}</i>
-      </a>
+      </button>
     </OperationBarWrapper>
   )
 })

@@ -13,6 +13,10 @@ export function getSizeImage(imgUrl, size) {
   return `${imgUrl}?param=${size}x${size}`;
 }
 
+export function getHeightAndWidthImage(imgUrl, height, width) {
+  return `${imgUrl}?param=${height}x${width}`;
+}
+
 export function formatDate(time, fmt) {
   let date = new Date(time);
 
@@ -49,4 +53,15 @@ export function formatMinuteSecond(time) {
 
 export function getPlaySong(id) {
   return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
+}
+
+
+//去一个字符串中底n次出现的字符位置
+//c为所查找的字符，n为次数
+export function nthIndexOf(str, c, n) {
+  let x = str.indexOf(c);
+  for (var i = 0; i < n - 1; i++) {
+    x = str.indexOf(c, x + 1);
+  }
+  return x;
 }

@@ -9,7 +9,7 @@ import {
   HotAlbumWrapper
 } from './style';
 
-export default memo(function HYHotAlbum() {
+export default memo(function HotAlbum() {
 
   const { hotAlbums } = useSelector(state => ({
     hotAlbums: state.getIn(["album", "hotAlbums"])

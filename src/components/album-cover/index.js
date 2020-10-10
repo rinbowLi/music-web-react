@@ -8,13 +8,12 @@ import { getSongDetailAction, changeCurrentPlayListAction } from '../../pages/pl
 
 import { AlbumWrapper } from './style';
 
-export default memo(function HYAlbumCover(props) {
+export default memo(function AlbumCover(props) {
   // state and props
   const { info, size = 130, width = 153, bgp = "-845px" } = props;
   const dispatch = useDispatch();
 
   const getAndPlayList = (id) => {
-    console.log(id)
     getAlbumDetail(id).then(res => {
       dispatch(changeCurrentPlayListAction(res.songs));
       dispatch(getSongDetailAction(res.songs[0].id));

@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 import { Pagination } from 'antd';
 import { PaginationWrapper } from './style';
 
-export default memo(function HYPagination(props) {
+export default memo(function MyPagination(props) {
   const { currentPage, total, onPageChange } = props;
 
   // render function

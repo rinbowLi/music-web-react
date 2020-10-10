@@ -129,6 +129,23 @@ span:hover.link {
   background: url(../img/playbar_sprite.png) no-repeat 0 9999px;
 }
 
+.sprite {
+  background: url(../img/sprite.png) no-repeat 0 9999px;
+}
+
+
+.tab {
+  background: url(../img/tab.png) no-repeat 0 9999px;
+}
+
+.table {
+  background: url(../img/table.png) no-repeat 0 9999px;
+}
+
+.icon2 {
+  background: url(../img/icon2.png) no-repeat 0 9999px;
+}
+
 /* .lyric-class .ant-message-notice-content {
   position: fixed;
   left: 50%;

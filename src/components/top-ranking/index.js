@@ -8,7 +8,7 @@ import { changeCurrentPlayListAction } from '../../pages/player/store/actionCrea
 
 import { TopRankingWrapper } from './style';
 
-export default memo(function HYTopRanking(props) {
+export default memo(function TopRanking(props) {
   // props and state
   const { info } = props;
   const { tracks = [] } = info;

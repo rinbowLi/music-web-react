@@ -6,7 +6,7 @@ import PlayList from './c-cpns/play-list';
 import LyricPanel from './c-cpns/lyric-panel';
 import { PanelWrapper } from './style';
 
-export default memo(function HYAppPlayList() {
+export default memo(function AppPlayList() {
 
   // const dispatch = useDispatch();
   const { currentSong } = useSelector(state => ({

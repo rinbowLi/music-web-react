@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { HeaderWrapper } from './style';
 
-const HYThemeHeaderRCM = memo(function(props) {
+const ThemeHeaderRCM = memo(function(props) {
   const { title, keywords } = props;
 
   return (
@@ -31,13 +31,13 @@ const HYThemeHeaderRCM = memo(function(props) {
   )
 })
 
-HYThemeHeaderRCM.propTypes = {
+ThemeHeaderRCM.propTypes = {
   title: PropTypes.string.isRequired,
   keywords: PropTypes.array
 }
 
-HYThemeHeaderRCM.defaultProps = {
+ThemeHeaderRCM.defaultProps = {
   keywords: []
 }
 
-export default HYThemeHeaderRCM;
+export default ThemeHeaderRCM;
