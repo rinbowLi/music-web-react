@@ -65,3 +65,7 @@ export function nthIndexOf(str, c, n) {
   }
   return x;
 }
+
+export const highLight = (value, _keywords) => {
+  return value.split(_keywords).join(`<span class="light">${_keywords}</span>`)
+}

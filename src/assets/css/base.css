@@ -146,6 +146,10 @@ span:hover.link {
   background: url(../img/icon2.png) no-repeat 0 9999px;
 }
 
+.light{
+  color:#0c73c2;
+}
+
 /* .lyric-class .ant-message-notice-content {
   position: fixed;
   left: 50%;

@@ -11,7 +11,6 @@ import SongList from './c-cpns/songList'
 import Video from './c-cpns/video'
 
 import { searchTypeData } from '@/utils/handle-data'
-import _ from 'lodash'
 
 import { getSearchResultAction, changeCurIndexAction, getSearchSuggestAction } from './store/actionCreators'
 
@@ -61,18 +60,6 @@ export default memo(function Search() {
       default:
         return `首单曲`
     }
-  }
-
-  //防抖
-  function debounce(fn, wait, data) {
-    var timeout = null;
-    var that = this;
-    return function () {
-      clearTimeout(timeout);
-      timeout = setTimeout(function () {
-        fn.call(that, data);
-      }, wait);
-    };
   }
 
   const getSearchSuggest = () => {
