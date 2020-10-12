@@ -6,7 +6,6 @@ import { getHeightAndWidthImage, formatMinuteSecond, getCount } from '@/utils/fo
 
 export default memo(function VideoCover(props) {
   const { info } = props;
-  console.log(info)
   return (
     <VideoCoverWarpper>
       <div className="cover">
@@ -16,7 +15,7 @@ export default memo(function VideoCover(props) {
       </div>
       <div className="bottom">
         <div className="title text-nowrap"> {info.title} </div>
-        <div className="by text-nowrap">by&nbsp;{info.creator ? info.creator[0].userName : "未知来源"} </div>
+        <div className="by text-nowrap">by&nbsp;{info.creator ? info.creator.userName : "未知来源"} </div>
       </div>
     </VideoCoverWarpper>
   )

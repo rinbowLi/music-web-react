@@ -8,6 +8,11 @@ export const LyricsWarpper = styled.div`
   .item{
 
   } */
+  &:nth-child(even) .item{
+    background-color:#f7f7f7;
+      border-color:#f7f7f7;
+  }
+  
   .item{
     display:flex;
     align-items:center;
