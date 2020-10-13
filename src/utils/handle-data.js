@@ -70,3 +70,6 @@ export const searchTypeData = [
   },
 
 ]
+
+
+export const discoverRoute = ["/discover","/song","/singer","/playlist","/album","/mv"]

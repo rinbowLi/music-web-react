@@ -14,6 +14,7 @@ const Player = lazy(() => import("../pages/player"))
 const Friend = lazy(() => import("../pages/friend"))
 const Mine = lazy(() => import("../pages/mine"))
 const Search = lazy(() => import("../pages/search"))
+const Song = lazy(() => import("../pages/song"))
 
 
 const routes = [
@@ -32,7 +33,7 @@ const routes = [
         path: "/discover",
         exact: true,
         render: () => (
-          <Redirect to={"/discover/artist"} />
+          <Redirect to={"/discover/recommend"} />
         )
       },
       {
@@ -78,7 +79,10 @@ const routes = [
     path: "/search",
     component: Search
   },
-
+  {
+    path: "/song",
+    component: Song
+  },
 
 ];
 

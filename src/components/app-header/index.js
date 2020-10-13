@@ -1,11 +1,12 @@
 import React, { memo, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import classnames from "classnames";
 import { Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 
 import { headerLinks } from '@/common/local-data'
+import { discoverRoute } from '@/utils/handle-data'
 import { highLight } from '@/utils/format-utils'
 
 import { HeaderWarpper, HeaderLeft, HeaderRight } from './style'
@@ -18,6 +19,10 @@ export default memo(function MyAppHeader() {
   const [showSuggest, setShowSuggest] = useState(false)
 
   const dispatch = useDispatch();
+  const location = useLocation().pathname;
+  console.log(location)
+
+
 
   const { searchSuggest } = useSelector(state => ({
     searchSuggest: state.getIn(["search", "searchSuggest"])
@@ -48,10 +53,19 @@ export default memo(function MyAppHeader() {
     }
   }
 
+  //动态匹配路由信息，展示当前路由的小红色三角形
+  const isActive = (link, index) => {
+    if (location.indexOf(link) > -1) return "active";
+    if (index === 0 && discoverRoute.some(item => location.indexOf(item) > -1)) {
+      return "active"
+    }
+    return ""
+  }
+
 
   const showSelectedItem = (item, index) => {
     if (index < 3) {
-      return <NavLink to={item.link} exact>
+      return <NavLink to={item.link} exact className={isActive(item.link, index)}>
         {item.title}
         <i className="sprite_01 icon"></i>
       </NavLink>
@@ -59,7 +73,7 @@ export default memo(function MyAppHeader() {
       return <a href={item.link} target="_blank" rel="noopener noreferrer">{item.title}</a>
     }
   }
-  
+
   return (
     <HeaderWarpper>
       <div className="content wrap-v1">
@@ -74,7 +88,7 @@ export default memo(function MyAppHeader() {
           </div>
         </HeaderLeft>
         <HeaderRight>
-          <Input className="search" placeholder="音乐/视频/电台/用户" prefix={<SearchOutlined />} value={keywords} onChange={e => getSearchSuggest(e)} onBlur={e => setShowSuggest(false)} onFocus={() => isShowSuggest()}  />
+          <Input className="search" placeholder="音乐/视频/电台/用户" prefix={<SearchOutlined />} value={keywords} onChange={e => getSearchSuggest(e)} onBlur={e => setShowSuggest(false)} onFocus={() => isShowSuggest()} />
           <div className="suggest-box" style={{ display: showSuggest ? "block" : "none" }}>
             <div className="user-suggest">
               <span>搜“{keywords}”相关用户 ></span>

@@ -6,13 +6,32 @@ export function getSongCategory() {
   })
 }
 
-export function getSongCategoryList(cat="全部", offset=0, limit = 35) {
+export function getSongCategoryList(cat = "全部", offset = 0, limit = 35) {
   return request({
     url: "/top/playlist",
     params: {
       cat,
       limit,
       offset
+    }
+  })
+}
+
+export function getSongsDetail(ids) {
+  return request({
+    url: "/song/detail",
+    params: {
+      ids
+    }
+  })
+}
+
+
+export function getSongsComment(id) {
+  return request({
+    url: "/comment/music",
+    params: {
+      id
     }
   })
 }
