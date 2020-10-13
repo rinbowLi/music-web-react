@@ -1,11 +1,15 @@
 import React, { memo } from 'react'
-
+import { useSelector, shallowEqual } from "react-redux"
 import { UsersWarpper } from './style'
 
-import { getSizeImage } from '@/utils/format-utils'
+import { getSizeImage, highLight } from '@/utils/format-utils'
 
 export default memo(function User(props) {
   const { result } = props;
+
+  const { keywords } = useSelector(state => ({
+    keywords: state.getIn(["search", "keywords"])
+  }), shallowEqual);
 
   return (
     <UsersWarpper>
@@ -19,10 +23,10 @@ export default memo(function User(props) {
               </div>
               <div className="right text-nowrap">
                 <div className="name">
-                  {item.nickname}{item.authStatus === 1 && <span className="icon2 band"></span>}
+                  <span dangerouslySetInnerHTML={{ __html: highLight(item.nickname, keywords) }}></span>{item.authStatus === 1 && <span className="icon2 band"></span>}
                   <span className={item.gender === 1 ? "sprite_icon2 male" : "sprite_icon2 female"}></span>
                 </div>
-                <div className="sign text-nowrap">{item.signature}</div>
+                <div className="sign text-nowrap"><span dangerouslySetInnerHTML={{ __html: highLight(item.signature, keywords) }}></span></div>
               </div>
             </div>
             <div className="singerName sprite_button2">关注</div>

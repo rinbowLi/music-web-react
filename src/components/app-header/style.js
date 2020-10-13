@@ -18,7 +18,7 @@ background-color:#242424;
 }
 `
 
-export const HeaderLeft =styled.div`
+export const HeaderLeft = styled.div`
 display: flex;
 
 .logo {
@@ -110,6 +110,7 @@ export const HeaderRight = styled.div`
         background-color:#e3e5e7;
       }
       .other-suggest{
+
         .singer{
           display:flex;
           .left{
@@ -117,7 +118,7 @@ export const HeaderRight = styled.div`
             padding: 10px 0 0 10px;
             border-right: 1px solid #e2e2e2;
             font-size:12px;
-            color:#666;
+            color:#000;
             display:flex;
             align-items:center;
             .singer{
@@ -138,6 +139,7 @@ export const HeaderRight = styled.div`
               text-indent: 12px;
               line-height: 24px;
               cursor: pointer;
+              color:#000;
             }
             .list-item:hover{
               background-color:#e3e5e7;
@@ -151,7 +153,7 @@ export const HeaderRight = styled.div`
             padding: 10px 0 0 10px;
             border-right: 1px solid #e2e2e2;
             font-size:12px;
-            color:#666;
+            color:#000;
             display:flex;
             align-items:center;
             .song{
@@ -172,6 +174,7 @@ export const HeaderRight = styled.div`
               text-indent: 12px;
               line-height: 24px;
               cursor: pointer;
+              color:#000;
             }
             .list-item:hover{
               background-color:#e3e5e7;
@@ -185,7 +188,7 @@ export const HeaderRight = styled.div`
             padding: 10px 0 0 10px;
             border-right: 1px solid #e2e2e2;
             font-size:12px;
-            color:#666;
+            color:#000;
             display:flex;
             align-items:center;
             .album{
@@ -206,6 +209,7 @@ export const HeaderRight = styled.div`
               text-indent: 12px;
               line-height: 24px;
               cursor: pointer;
+              color:#000;
             }
             .list-item:hover{
               background-color:#e3e5e7;

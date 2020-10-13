@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { message } from "antd"
 import { BASE_URL, TIMEOUT } from "./config";
 
 const instance = axios.create({
@@ -25,13 +25,13 @@ instance.interceptors.response.use(res => {
   if (err && err.response) {
     switch (err.response.status) {
       case 400:
-        console.log("请求错误");
+        message.error('请求错误', 5);
         break;
       case 401:
-        console.log("未授权访问");
+        message.error('未授权访问', 5);
         break;
       default:
-        console.log("其他错误信息");
+        message.error('其他错误信息', 5);
     }
   }
   return err;

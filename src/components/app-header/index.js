@@ -6,6 +6,7 @@ import { Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 
 import { headerLinks } from '@/common/local-data'
+import { highLight } from '@/utils/format-utils'
 
 import { HeaderWarpper, HeaderLeft, HeaderRight } from './style'
 
@@ -84,7 +85,7 @@ export default memo(function MyAppHeader() {
                 <div className="right">
                   {
                     searchSuggest && searchSuggest.artists && searchSuggest.artists.map(item => {
-                      return (<div className="list-item text-nowrap" key={item.id}>{item.name}</div>)
+                      return (<div className="list-item text-nowrap" key={item.id}><span dangerouslySetInnerHTML={{ __html: highLight(item.name, keywords) }}></span></div>)
                     })
                   }
                 </div>
@@ -94,7 +95,7 @@ export default memo(function MyAppHeader() {
                 <div className="right">
                   {
                     searchSuggest && searchSuggest.songs && searchSuggest.songs.map(item => {
-                      return (<div className="list-item text-nowrap" key={item.id}>{item.name} - {item.artists.length > 0 && item.artists[0].name}</div>)
+                      return (<div className="list-item text-nowrap" key={item.id}><span dangerouslySetInnerHTML={{ __html: highLight(item.name + "-" + (item.artists.length > 0 && item.artists[0].name), keywords) }}></span></div>)
                     })
                   }
                 </div>
@@ -104,7 +105,7 @@ export default memo(function MyAppHeader() {
                 <div className="right">
                   {
                     searchSuggest && searchSuggest.albums && searchSuggest.albums.map(item => {
-                      return (<div className="list-item text-nowrap" key={item.id}>{item.name} - {item.artist && item.artist.name}</div>)
+                      return (<div className="list-item text-nowrap" key={item.id}><span dangerouslySetInnerHTML={{ __html: highLight(item.name + "-" + item.artist && item.artist.name, keywords) }}></span></div>)
                     })
                   }
                 </div>

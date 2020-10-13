@@ -5,7 +5,6 @@ import { DjradioCoverWarpper } from './style'
 
 export default memo(function Djradio(props) {
   const { result } = props;
-  console.log(result)
   return (
     <DjradioCoverWarpper>
       <h2>主播电台</h2>

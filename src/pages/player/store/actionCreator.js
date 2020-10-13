@@ -10,7 +10,6 @@ export const getSongDetailAction = (ids) => {
     let song = null;
     //如果存在的话那就只要改变当前index就好
     if (songIndex !== -1) {
-      console.log(songIndex)
       dispatch(changeCurrentSongIndexAction(songIndex));
       dispatch(changeCurrentSongAction(playList[songIndex]))
       //3.获取歌词
@@ -19,6 +18,7 @@ export const getSongDetailAction = (ids) => {
     } else {
       //不存在的话
       //请求歌曲数据
+      if(!ids) return;
       getSongDetail(ids).then(res => {
         //获取歌曲
         song = res.songs && res.songs[0];

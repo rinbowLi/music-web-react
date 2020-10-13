@@ -11,7 +11,6 @@ export default memo(function SongOperationBar(props) {
 
   const getAndPlayList = (id) => {
     getPlaylistDetail(id).then(res => {
-      console.log(res)
       dispatch(changeCurrentPlayListAction(res.playlist.tracks));
       dispatch(getSongDetailAction(res.playlist.tracks[0].id));
     })

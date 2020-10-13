@@ -20,7 +20,6 @@ export const changeCurrentTypeAction = (type) => ({
 export const getArtistListAction = (area, type, alpha) => {
   return dispatch => {
     getArtistList(area, type, alpha).then(res => {
-      console.log(res);
       dispatch(changeArtistListAction(res.artists))
     })
   }

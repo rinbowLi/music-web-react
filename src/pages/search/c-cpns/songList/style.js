@@ -28,7 +28,9 @@ export const SongListWarpper = styled.div`
       .play:hover{
         background-position: 0 -128px;
       }
-      img{
+      .img-box{
+        height:50px;
+        width:50px;
         margin-right:10px;
       }
     }

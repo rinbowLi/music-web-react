@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 
 import { SongsWarpper } from './style'
 
-import SingersCover from '@/components/singers-cover'
+import SingersCover from './c-cpns/singers-cover'
 
 export default memo(function Artist(props) {
   const { result } = props;

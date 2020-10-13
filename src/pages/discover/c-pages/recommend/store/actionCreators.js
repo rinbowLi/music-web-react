@@ -46,7 +46,6 @@ export const changeAlbumsAction = (res) => ({
 export const getTopListAction = (idx) => {
   return dispatch => {
     getTopList(idx).then(res => {
-      console.log(res)
       switch (idx) {
         case 0:
           dispatch(changeUpRankingAction(res))
@@ -58,7 +57,7 @@ export const getTopListAction = (idx) => {
           dispatch(changeOriginRakingAction(res))
           break;
         default:
-          console.log(res)
+          dispatch(changeUpRankingAction(res))
       }
 
     })

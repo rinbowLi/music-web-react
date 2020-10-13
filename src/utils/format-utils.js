@@ -66,6 +66,9 @@ export function nthIndexOf(str, c, n) {
   return x;
 }
 
+
+//根据关键字匹配字符串高亮
 export const highLight = (value, _keywords) => {
-  return value.split(_keywords).join(`<span class="light">${_keywords}</span>`)
+  if (!value) return value;
+  return value.split(_keywords).join(`<span class="light">${_keywords}</span>`);
 }

@@ -18,8 +18,6 @@ export function getArtistList(area, type, initial) {
     }
   }
 
-  console.log("url:", url, "params:", params);
-
   return request({
     url,
     params
