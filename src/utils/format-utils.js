@@ -24,6 +24,7 @@ export function formatDate(time, fmt) {
     fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
   }
   let o = {
+    'Y+': date.getFullYear(),
     'M+': date.getMonth() + 1,
     'd+': date.getDate(),
     'h+': date.getHours(),
@@ -42,6 +43,10 @@ export function formatDate(time, fmt) {
 function padLeftZero(str) {
   return ('00' + str).substr(str.length);
 };
+
+export function formatYearMonthDay(time) {
+  return formatDate(time, "YYYY年MM月dd日");
+}
 
 export function formatMonthDay(time) {
   return formatDate(time, "MM月dd日");

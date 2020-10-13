@@ -26,7 +26,7 @@ export default memo(function SongDetail(props) {
   }, [props.id])
 
   useEffect(() => {
-    getLyric(1382596189).then(res => {
+    getLyric(props.id).then(res => {
       if (res.lrc) {
         const lyricList = parseLyricAnd_N(res.lrc.lyric)
         const index = nthIndexOf(lyricList, "<br />", 13);
@@ -36,7 +36,7 @@ export default memo(function SongDetail(props) {
 
       }
     })
-  }, [])
+  }, [props.id])
 
   return (
     <SongDetailWarpper>
