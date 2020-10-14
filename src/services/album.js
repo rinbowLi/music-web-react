@@ -15,3 +15,32 @@ export function getTopAlbums(limit, offset) {
     }
   })
 }
+
+
+export function getAlbumDetail(id) {
+  return request({
+    url: "/album",
+    params: {
+      id
+    }
+  })
+}
+
+
+export function getAlbumComment(id) {
+  return request({
+    url: "/comment/album",
+    params: {
+      id
+    }
+  })
+}
+
+export function getArtistAlbum(id) {
+  return request({
+    url: "/artist/album",
+    params: {
+      id
+    }
+  })
+}

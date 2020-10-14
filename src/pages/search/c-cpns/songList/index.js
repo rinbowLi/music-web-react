@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { NavLink } from "react-router-dom"
 
 import { SongListWarpper } from './style'
 
@@ -29,8 +30,8 @@ export default memo(function SongList(props) {
         result && result.map((item, index) => {
           return (<div key={item.id} className="item">
             <div className="songName"><span className="table play" onClick={() => getAndPlayList(item.id)} ></span>
-            <div className="img-box"><img src={getSizeImage(item.coverImgUrl, 50)} alt={item.name} /></div>
-            <span dangerouslySetInnerHTML={{ __html: highLight(item.name, keywords) }}></span></div>
+              <div className="img-box"><img src={getSizeImage(item.coverImgUrl, 50)} alt={item.name} /></div>
+              <NavLink to={"/playlist?id=" + item.id} dangerouslySetInnerHTML={{ __html: highLight(item.name, keywords) }}></NavLink></div>
             <div className="singerName"><span>{item.trackCount}首</span>by <span dangerouslySetInnerHTML={{ __html: highLight(item.creator ? item.creator.nickname : "未知歌手", keywords) }}></span></div>
             <div className="albumName">收藏：{item.bookCount}</div>
             <div className="time">收听：{getCount(item.playCount)}</div>

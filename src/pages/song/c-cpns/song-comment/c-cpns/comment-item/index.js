@@ -1,4 +1,4 @@
-import React, { memo, Fragment } from "react";
+import React, { memo } from "react";
 import { CommentItemWarpper } from "./style";
 
 import {
@@ -22,10 +22,22 @@ export default memo(function CommentItem({ hotComment }) {
               </div>
               <div className="right">
                 <div className="top">
-                  <a href="#">{item.user.nickname}</a>
+                  <span>{item.user.nickname}</span>
                   {/* <img src="https://p1.music.126.net/G2KYG9JjrGGP5grSaXOZaw==/109951163309837705.png?param=12y12" /> */}
                   ：{item.content}
                 </div>
+                {
+                  item.beReplied.length > 0 &&
+                  <div className="beReply">
+                    <span className="darr"><i className="bd">◆</i><i className="bg">◆</i></span>
+                    <div className="reply-content">
+                      <span className="nickname">{item.beReplied && item.beReplied[0].user.nickname}</span>
+                      {/* <img src="https://p1.music.126.net/G2KYG9JjrGGP5grSaXOZaw==/109951163309837705.png?param=12y12" /> */}
+                    ：<span dangerouslySetInnerHTML={{ __html: item.beReplied.length > 0 ? item.beReplied[0].content.replace(/\n/g, "<br />") : "" }}></span>
+                    </div>
+
+                  </div>
+                }
                 <div className="bottom">
                   <div className="time">{formatYearMonthDay(item.time)}</div>
                   <div className="likeAndReply">

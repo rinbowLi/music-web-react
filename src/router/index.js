@@ -9,12 +9,14 @@ const Ranking = lazy(() => import("../pages/discover/c-pages/ranking"))
 const Songs = lazy(() => import("../pages/discover/c-pages/songs"))
 const Djradio = lazy(() => import("../pages/discover/c-pages/djradio"))
 const Artist = lazy(() => import("../pages/discover/c-pages/artist"))
-const Album = lazy(() => import("../pages/discover/c-pages/album"))
+const Album_discover = lazy(() => import("../pages/discover/c-pages/album"))
 const Player = lazy(() => import("../pages/player"))
 const Friend = lazy(() => import("../pages/friend"))
 const Mine = lazy(() => import("../pages/mine"))
 const Search = lazy(() => import("../pages/search"))
 const Song = lazy(() => import("../pages/song"))
+const PlayList = lazy(() => import("../pages/playlist"))
+const Album = lazy(() => import("../pages/album"))
 
 
 const routes = [
@@ -59,7 +61,7 @@ const routes = [
       },
       {
         path: "/discover/album",
-        component: Album
+        component: Album_discover
       },
       {
         path: "/discover/player",
@@ -82,6 +84,14 @@ const routes = [
   {
     path: "/song",
     component: Song
+  },
+  {
+    path: "/playlist",
+    component: PlayList
+  },
+  {
+    path: "/album",
+    component: Album
   },
 
 ];

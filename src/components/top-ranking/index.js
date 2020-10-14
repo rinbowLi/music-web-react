@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 
 import { getSizeImage } from '@/utils/format-utils';
@@ -50,11 +51,11 @@ export default memo(function TopRanking(props) {
               <div key={item.id} className="list-item">
                 <div className="rank">{index + 1}</div>
                 <div className="info">
-                  <span className="name text-nowrap">{item.name}</span>
+                  <NavLink className="name text-nowrap" to={"/song?id=" + item.id} title={item.name}>{item.name}</NavLink>
                   <div className="operate">
-                    <button className="btn sprite_02 play" 
-                            onClick={e => playMusic(item)}
-                            ></button>
+                    <button className="btn sprite_02 play"
+                      onClick={e => playMusic(item)}
+                    ></button>
                     <button className="btn sprite_icon2 addto"></button>
                     <button className="btn sprite_02 favor"></button>
                   </div>

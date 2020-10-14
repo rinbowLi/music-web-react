@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
-import { useSelector, shallowEqual,useDispatch } from "react-redux";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom"
 
 import {
   getSizeImage,
@@ -54,8 +55,8 @@ export default memo(function RankingList() {
                           index < 3 ?
                             (<img src={getSizeImage(item.al.picUrl, 50)} alt="" />) : null
                         }
-                        <span className="play sprite_table" title="播放"   onClick={e => playMusic(item)}></span>
-                        <span className="name">{item.name}</span>
+                        <span className="play sprite_table" title="播放" onClick={e => playMusic(item)}></span>
+                        <NavLink to={"/song?id=" + item.id} className="name">{item.name}</NavLink>
                       </div>
                     </td>
                     <td>{formatMinuteSecond(item.dt)}</td>

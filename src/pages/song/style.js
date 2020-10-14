@@ -15,15 +15,16 @@ export const SongWrapper = styled.div`
 
 export const SongLeft = styled.div`
   padding: 47px 30px 40px 39px;
-  width: 729px;
+  width: 709px;
 `;
 
 export const SongRight = styled.div`
-  width: 250px;
+  width: 270px;
   border-style: solid;
   border-color: rgb(211, 211, 211);
   border-image: initial;
   border-width: 0px 1px;
+  padding:20px 40px 40px 30px;
 `;
 
 export const TopMenu = styled.div`

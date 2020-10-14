@@ -76,6 +76,7 @@ export const TopRankingWrapper = styled.div`
 
         .name {
           flex: 1;
+          color:#000;
         }
 
         .operate {

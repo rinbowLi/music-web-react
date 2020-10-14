@@ -1,6 +1,7 @@
 import React, { memo, useRef, useState } from 'react'
 import { SearchWrapper } from './style'
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import Songs from './c-cpns/song'
 import Ablum from './c-cpns/ablum'
 import Artist from './c-cpns/artists'
@@ -113,7 +114,7 @@ export default memo(function Search() {
                 <div className="right">
                   {
                     searchSuggest && searchSuggest.songs && searchSuggest.songs.map(item => {
-                      return (<div className="list-item text-nowrap" key={item.id}><span dangerouslySetInnerHTML={{ __html: highLight(item.name + "-" + (item.artists.length > 0 && item.artists[0].name), keywords) }}></span></div>)
+                      return (<NavLink to={"/song?id=" + item.id} className="list-item text-nowrap" key={item.id}><span dangerouslySetInnerHTML={{ __html: highLight(item.name + "-" + (item.artists.length > 0 && item.artists[0].name), keywords) }}></span></NavLink>)
                     })
                   }
                 </div>

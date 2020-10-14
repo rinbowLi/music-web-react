@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useRef, useState, useCallback } from 'react'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { Carousel } from 'antd'
 
 import { getTopbannerAction } from '../../store/actionCreators'
@@ -28,6 +29,16 @@ export default memo(function TopBanner() {
     setcurrentIndex(to)
   }, [])
 
+  const handleLink = (id, type) => {
+    if (type === 1) {
+      return "/song?id=" + id;
+    }
+    else if (type === 10) {
+      return "/album?id=" + id;
+    }
+    return "/";
+  }
+
 
   const bgImage = topBanners[currentIndex] && (topBanners[currentIndex].imageUrl + "?imageView&blur=40x20");
 
@@ -38,9 +49,9 @@ export default memo(function TopBanner() {
           <Carousel effect="fade" autoplay ref={bannerRef} beforeChange={bannerChange}>
             {
               topBanners.map(item => (
-                <div className="banner-item" key={item.imageUrl}>
+                <NavLink className="banner-item" to={handleLink(item.targetId, item.targetType)} key={item.imageUrl}>
                   <img className="image" src={item.imageUrl} alt={item.typeTitle} />
-                </div>
+                </NavLink>
               ))
             }
           </Carousel>

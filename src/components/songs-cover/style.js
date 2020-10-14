@@ -7,6 +7,7 @@ export const SongsCoverWrapper = styled.div`
 
   .cover-top {
     position: relative;
+    display:block;
 
     &>img {
       width: 140px;

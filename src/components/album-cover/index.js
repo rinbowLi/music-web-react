@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { NavLink } from "react-router-dom"
 
 import { getSizeImage } from '@/utils/format-utils';
 
@@ -22,15 +23,17 @@ export default memo(function AlbumCover(props) {
 
   return (
     <AlbumWrapper size={size} width={width} bgp={bgp}>
-      <div className="album-image">
-        <img src={getSizeImage(info.picUrl, size)} alt="" />
-        <a href="/todo" className="cover image_cover">{info.name}</a>
-        <i className="sprite_icon play" title="播放" onClick={() => getAndPlayList(info.id)}></i>
-      </div>
-      <div className="album-info">
-        <div className="name text-nowrap">{info.name}</div>
-        <div className="artist text-nowrap">{info.artist.name}</div>
-      </div>
+      <NavLink to={"/album?id=" + info.id}>
+        <div className="album-image">
+          <img src={getSizeImage(info.picUrl, size)} alt="" />
+          <NavLink  to={"/album?id=" + info.id} className="cover image_cover">{info.name}</NavLink>
+          <i className="sprite_icon play" title="播放" onClick={() => getAndPlayList(info.id)}></i>
+        </div>
+        <div className="album-info">
+          <div className="name text-nowrap">{info.name}</div>
+          <div className="artist text-nowrap">{info.artist.name}</div>
+        </div>
+      </NavLink>
     </AlbumWrapper>
   )
 })

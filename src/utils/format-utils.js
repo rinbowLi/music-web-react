@@ -45,7 +45,7 @@ function padLeftZero(str) {
 };
 
 export function formatYearMonthDay(time) {
-  return formatDate(time, "YYYY年MM月dd日");
+  return formatDate(time, "YY年MM月dd日");
 }
 
 export function formatMonthDay(time) {

@@ -6,7 +6,7 @@ import { nthIndexOf, getSizeImage } from '@/utils/format-utils'
 import { getSongsDetail } from '@/services/songs'
 
 
-import SongOperationBar from '@/components/song-operation-bar';
+import SongOperationBar from './c-cpns/song-operation-bar';
 
 
 export default memo(function SongDetail(props) {
@@ -62,7 +62,7 @@ export default memo(function SongDetail(props) {
             shareTitle="分享"
             downloadTitle="下载"
             commentTitle={`(${props.total || 0})`}
-            id={111} />
+            id={props.id} />
           <div className="lyric">
             <div className="lyric1" dangerouslySetInnerHTML={{ __html: lyric1 }}>
             </div>

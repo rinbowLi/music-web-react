@@ -80,6 +80,7 @@ export const SearchWrapper = styled.div`
             padding: 6px 0 5px;
             border-top: 1px solid #e2e2e2;
             .list-item{
+              display:block;
               width: 100%;
               text-indent: 12px;
               line-height: 24px;
@@ -87,6 +88,7 @@ export const SearchWrapper = styled.div`
             }
             .list-item:hover{
               background-color:#e3e5e7;
+              text-decoration:none;
             }
           }
         }
@@ -114,6 +116,7 @@ export const SearchWrapper = styled.div`
             padding: 6px 0 5px;
             border-top: 1px solid #e2e2e2;
             .list-item{
+              display:block;
               width: 100%;
               text-indent: 12px;
               line-height: 24px;
@@ -121,6 +124,7 @@ export const SearchWrapper = styled.div`
             }
             .list-item:hover{
               background-color:#e3e5e7;
+              text-decoration:none;
             }
           }
         }
@@ -148,6 +152,7 @@ export const SearchWrapper = styled.div`
             padding: 6px 0 5px;
             border-top: 1px solid #e2e2e2;
             .list-item{
+              display:block;
               width: 100%;
               text-indent: 12px;
               line-height: 24px;
@@ -155,6 +160,7 @@ export const SearchWrapper = styled.div`
             }
             .list-item:hover{
               background-color:#e3e5e7;
+              text-decoration:none;
             }
           }
         }

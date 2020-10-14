@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { NavLink } from "react-router-dom";
 
 import { SongsWarpper } from './style'
 
@@ -23,7 +24,7 @@ export default memo(function Songs(props) {
       {
         result && result.map((item, index) => {
           return (<div key={item.id} className="item">
-            <div className="songName"><span className="table play" onClick={() => playMusic(item.id)}></span><span dangerouslySetInnerHTML={{ __html: highLight(item.name, keywords) }}></span></div>
+            <div className="songName"><span className="table play" onClick={() => playMusic(item.id)}></span><NavLink to={"/song?id=" + item.id}><span dangerouslySetInnerHTML={{ __html: highLight(item.name, keywords) }}></span></NavLink></div>
             <div className="singerName"><span dangerouslySetInnerHTML={{ __html: highLight(item.artists ? item.artists[0].name : "未知歌手", keywords) }}></span></div>
             <div className="albumName"><span dangerouslySetInnerHTML={{ __html: highLight(item.album ? item.album.name : "未知专辑", keywords) }}></span></div>
             <div className="time">{formatMinuteSecond(item.duration)}</div>

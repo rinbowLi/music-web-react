@@ -28,3 +28,21 @@ export function getPlaylistDetail(id){
     }
   })
 }
+
+export function getPlaylistComment(id){
+  return request({
+    url:'/comment/playlist',
+    params:{
+      id
+    }
+  })
+}
+
+export function getRelatedPlaylist(id){
+  return request({
+    url:'/related/playlist',
+    params:{
+      id
+    }
+  })
+}

@@ -35,3 +35,14 @@ export function getSongsComment(id) {
     }
   })
 }
+
+
+//获取相似歌曲
+export function getSimiSong(id) {
+  return request({
+    url: "/simi/song",
+    params: {
+      id
+    }
+  })
+}
