@@ -20,6 +20,7 @@ export const SimilarSongsWrapper = styled.div`
         width: 156px;
         line-height: 16px;
         .song-name{
+          display:block;
           color:#333;
           font-size:12px;
           cursor: pointer;
@@ -28,6 +29,7 @@ export const SimilarSongsWrapper = styled.div`
           text-decoration:underline;
         }
         .singer-name{
+          display:block;
           color:#999;
           font-size:12px;
           cursor: pointer;

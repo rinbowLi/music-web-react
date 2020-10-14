@@ -6,7 +6,7 @@ import { PlaybarWrapper, Operator, PlayInfo, Control } from './style'
 
 import AppPlayPanel from '../app-player-panel'
 
-import { getSongDetailAction, changeSequenceAction, changeCurrentSong, changeCurLyricIndexAction } from '../store/actionCreator'
+import { getSongDetailAction, changeSequenceAction, changeCurrentSong, changeCurLyricIndexAction , changeIsshowPanelAction ,changeIsShowVolumeAction } from '../store/actionCreator'
 
 import { getSizeImage, formatMinuteSecond, getPlaySong } from '@/utils/format-utils.js'
 
@@ -17,18 +17,18 @@ export default memo(function AppPlayerBar() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLocking, setIsLocking] = useState(false);
   const [volume, setVolume] = useState(0.8);
-  const [isShowVolume, setIsShowVolume] = useState(false);
-  const [showPanel, setShowPanel] = useState(false);
   const [playbarWrapperBottom, setPlaybarWrapperBottom] = useState({ bottom: "-45px" });
 
   const dispatch = useDispatch();
 
-  const { currentSong, sequence, lyricList, playList, curLyricIndex } = useSelector(state => ({
+  const { currentSong, sequence, lyricList, playList, curLyricIndex, isShowVolume , isshowPanel} = useSelector(state => ({
     currentSong: state.getIn(["player", "currentSong"]),
     sequence: state.getIn(["player", "sequence"]),
     lyricList: state.getIn(["player", "lyricList"]),
     playList: state.getIn(["player", "playList"]),
     curLyricIndex: state.getIn(["player", "curLyricIndex"]),
+    isShowVolume: state.getIn(["player", "isShowVolume"]),
+    isshowPanel: state.getIn(["player", "isshowPanel"]),
   }), shallowEqual)
 
 
@@ -137,13 +137,24 @@ export default memo(function AppPlayerBar() {
     }
   }
 
+  const handleClick = (flag,e) =>{
+    if(!flag){
+      e.stopPropagation();
+      e.preventDefault();
+      return;
+    }
+    dispatch(changeIsShowVolumeAction(false));
+    dispatch(changeIsshowPanelAction(false));
+  }
+
   return (
     <PlaybarWrapper
       className="sprite_player"
       style={playbarWrapperBottom}
       onMouseOver={() => setPlaybarWrapperStyle(true)}
-      onMouseOut={() => setPlaybarWrapperStyle(false)}>
-      <div className="content wrap-v2">
+      onMouseOut={() => setPlaybarWrapperStyle(false)}
+      onClick={() => handleClick(true)}>
+      <div className="content wrap-v2" onClick={(e) => handleClick(false,e)}>
         <Control isPlaying={isPlaying}>
           <button className="sprite_player prev" onClick={e => changeMusic(-1)} title="上一首"></button>
           <button className="sprite_player play" onClick={() => PlayMusic()} title="播放/暂停"></button>
@@ -180,9 +191,9 @@ export default memo(function AppPlayerBar() {
               <div className="bg sprite_player"></div>
               <Slider tooltipVisible={false} value={volume * 100} onChange={handleVolumeChange} vertical />
             </div>
-            <button className="sprite_player btn volume" onClick={() => setIsShowVolume(!isShowVolume)}></button>
+            <button className="sprite_player btn volume" onClick={() => dispatch(changeIsShowVolumeAction(!isShowVolume))}></button>
             <button className="sprite_player btn loop" onClick={() => changeSequence()} title={sequence === 0 ? "循环" : (sequence === 1 ? "随机" : "单曲循环")}></button>
-            <button className="sprite_player btn playlist" title="播放列表" onClick={() => setShowPanel(!showPanel)}>{playList.length}</button>
+            <button className="sprite_player btn playlist" title="播放列表" onClick={() => dispatch(changeIsshowPanelAction(!isshowPanel))}>{playList.length}</button>
           </div>
         </Operator>
       </div>
@@ -196,7 +207,7 @@ export default memo(function AppPlayerBar() {
         className="hand"
         onMouseOver={() => setPlaybarWrapperStyle(true)}
         onMouseOut={() => setPlaybarWrapperStyle(false)}></div>
-      {showPanel && <AppPlayPanel />}
+      {isshowPanel && <AppPlayPanel onClick={(e) => handleClick(false,e)} />}
     </PlaybarWrapper>
   )
 })

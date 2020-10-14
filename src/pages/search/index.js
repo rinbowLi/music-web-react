@@ -89,14 +89,20 @@ export default memo(function Search() {
     }
   }
 
+  const handleBlur = ()=>{
+    setTimeout(()=>{
+      setShowSuggest(false)
+    },100)
+  }
+
   return (
     <SearchWrapper className="wrap-v2">
       <div className="g-wrap n-srch">
         <div className="searchInput sprite">
-          <input type="text" ref={inputRef} onChange={e => getSearchSuggest()} onBlur={e => setShowSuggest(false)} onFocus={() => isShowSuggest()} /><button className="btn sprite" onClick={() => getSearchResult()}></button>
+          <input type="text" ref={inputRef} onChange={e => getSearchSuggest()} onBlur={e => handleBlur()} onFocus={() => isShowSuggest()} /><button className="btn sprite" onClick={() => getSearchResult()}></button>
           <div className="suggest-box" style={{ display: showSuggest ? "block" : "none" }}>
             <div className="user-suggest">
-              <span>搜“{inputRef.current ? inputRef.current.value : ""}”相关用户 ></span>
+              <span>搜“{inputRef.current ? inputRef.current.value : ""}”相关用户</span>
             </div>
             <div className="other-suggest">
               <div className="singer list" style={{ display: searchSuggest && searchSuggest.artists && searchSuggest.artists.length > 0 ? "flex" : "none" }}>

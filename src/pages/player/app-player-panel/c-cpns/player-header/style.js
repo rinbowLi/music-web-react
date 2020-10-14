@@ -37,11 +37,13 @@ export const HeaderLeft = styled.div`
 
     .favor {
       background-position: -24px 0;
+      cursor: pointer;
     }
 
     .remove {
       width: 13px;
       background-position: -51px 0;
+      cursor: pointer;
     }
   }
 `
@@ -51,4 +53,22 @@ export const HeaderRight = styled.div`
   text-align: center;
   color: #fff;
   font-size: 14px;
+  display:flex;
+  .song-name{
+    width:calc(100% - 30px);
+  }
+  .close{
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    text-indent: -999px;
+    cursor: pointer;
+    background-position: -195px 9px;
+    &:hover{
+      background-position: -195px -21px;
+    }
+  }
 `

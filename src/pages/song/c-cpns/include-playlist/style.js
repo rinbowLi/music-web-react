@@ -29,6 +29,7 @@ export const IncludePlayListWarpper = styled.div`
       }
       .right{
         .playlist-name{
+          display:block;
           font-size:14px;
           color:#000;
           width: 140px;
@@ -38,6 +39,7 @@ export const IncludePlayListWarpper = styled.div`
           text-decoration:underline;
         }
         .owner-name{
+          display:block;
           font-size:12px;
           color:#999;
           width: 140px;

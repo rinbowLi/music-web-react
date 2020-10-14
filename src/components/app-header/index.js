@@ -62,6 +62,12 @@ export default memo(function MyAppHeader() {
     return ""
   }
 
+  const handleBlur = ()=>{
+    setTimeout(()=>{
+      setShowSuggest(false)
+    },100)
+  }
+
 
   const showSelectedItem = (item, index) => {
     if (index < 3) {
@@ -88,10 +94,10 @@ export default memo(function MyAppHeader() {
           </div>
         </HeaderLeft>
         <HeaderRight>
-          <Input className="search" placeholder="音乐/视频/电台/用户" prefix={<SearchOutlined />} value={keywords} onChange={e => getSearchSuggest(e)} onBlur={e => setShowSuggest(false)} onFocus={() => isShowSuggest()} />
+          <Input className="search" placeholder="音乐/视频/电台/用户" prefix={<SearchOutlined />} value={keywords} onChange={e => getSearchSuggest(e)} onBlur={e => handleBlur()} onFocus={() => isShowSuggest()} />
           <div className="suggest-box" style={{ display: showSuggest ? "block" : "none" }}>
             <div className="user-suggest">
-              <span>搜“{keywords}”相关用户 ></span>
+              <span>搜“{keywords}”相关用户</span>
             </div>
             <div className="other-suggest">
               <div className="singer list" style={{ display: searchSuggest && searchSuggest.artists && searchSuggest.artists.length > 0 ? "flex" : "none" }}>
@@ -109,7 +115,7 @@ export default memo(function MyAppHeader() {
                 <div className="right">
                   {
                     searchSuggest && searchSuggest.songs && searchSuggest.songs.map(item => {
-                      return (<div className="list-item text-nowrap" key={item.id}><span dangerouslySetInnerHTML={{ __html: highLight(item.name + "-" + (item.artists.length > 0 && item.artists[0].name), keywords) }}></span></div>)
+                      return (<NavLink to={"/song?id="+item.id} className="list-item text-nowrap" key={item.id}><span dangerouslySetInnerHTML={{ __html: highLight(item.name + "-" + (item.artists.length > 0 && item.artists[0].name), keywords) }}></span></NavLink>)
                     })
                   }
                 </div>

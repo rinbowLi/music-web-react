@@ -7,7 +7,9 @@ const defaultState = Map({
   currentSong: {},
   sequence: 0, //0-循环播放 1-随机播放 2-单曲播放
   lyricList:[],
-  curLyricIndex:0
+  curLyricIndex:0,
+  isshowPanel:false,
+  isShowVolume:false
 });
 
 export default function reducer(state = defaultState, action) {
@@ -24,6 +26,10 @@ export default function reducer(state = defaultState, action) {
       return state.set("lyricList", action.lyricList)
     case actionTypes.CHANGE_CURRENT_LYRIC_INDEX:
       return state.set("curLyricIndex", action.curLyricIndex)
+    case actionTypes.CHANGE_IS_SHOW_PANEL:
+      return state.set("isshowPanel", action.isshowPanel)
+    case actionTypes.CHANGE_IS_SHOW_VOLUME:
+      return state.set("isShowVolume", action.isShowVolume)
     default:
       return state;
   }

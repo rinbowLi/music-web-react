@@ -57,6 +57,7 @@ export const SongsCoverWrapper = styled.div`
     font-size: 14px;
     color: #000;
     margin-top: 5px;
+    display:block;
   }
 
   .cover-source {

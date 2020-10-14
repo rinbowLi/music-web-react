@@ -20,6 +20,7 @@ export const PlayListWrapper = styled.div`
     height: 28px;
     line-height: 28px;
     color: #ccc;
+    cursor: pointer;
 
     &.active {
       color: #fff;

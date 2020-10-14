@@ -109,3 +109,15 @@ export const changeCurLyricIndexAction = (curLyricIndex) => ({
   type: constants.CHANGE_CURRENT_LYRIC_INDEX,
   curLyricIndex
 })
+
+
+export const changeIsshowPanelAction = (isshowPanel) => ({
+  type: constants.CHANGE_IS_SHOW_PANEL,
+  isshowPanel
+})
+
+
+export const changeIsShowVolumeAction = (isShowVolume) => ({
+  type: constants.CHANGE_IS_SHOW_VOLUME,
+  isShowVolume
+})
