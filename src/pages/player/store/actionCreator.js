@@ -18,7 +18,7 @@ export const getSongDetailAction = (ids) => {
     } else {
       //不存在的话
       //请求歌曲数据
-      if(!ids) return;
+      if (!ids) return;
       getSongDetail(ids).then(res => {
         //获取歌曲
         song = res.songs && res.songs[0];
@@ -50,6 +50,7 @@ export const changeCurrentSong = (tag) => {
     const sequence = getState().getIn(["player", "sequence"]);
     let curSongIndex = getState().getIn(["player", "currentSongIndex"]);
     let playList = getState().getIn(["player", "playList"]);
+    if (playList.length === 0) return;
     switch (sequence) {
       case 1: //随机播放
         let randomIndex = Math.floor(Math.random() * playList.length);
@@ -91,7 +92,7 @@ export const changeSequenceAction = (sequence) => ({
 export const getLyricAction = (id) => {
   return dispatch => {
     getLyric(id).then(res => {
-      if(res.lrc){
+      if (res.lrc) {
         const lyricList = parseLyric(res.lrc.lyric)
         dispatch(changeLyricAction(lyricList))
       }

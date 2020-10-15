@@ -20,8 +20,6 @@ export default memo(function MyAppHeader() {
 
   const dispatch = useDispatch();
   const location = useLocation().pathname;
-  console.log(location)
-
 
 
   const { searchSuggest } = useSelector(state => ({

@@ -1,12 +1,12 @@
 import React, { memo, useState, useEffect, useRef, useCallback } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import { Slider, message } from "antd"
 import { PlaybarWrapper, Operator, PlayInfo, Control } from './style'
 
 import AppPlayPanel from '../app-player-panel'
 
-import { getSongDetailAction, changeSequenceAction, changeCurrentSong, changeCurLyricIndexAction , changeIsshowPanelAction ,changeIsShowVolumeAction } from '../store/actionCreator'
+import { getSongDetailAction, changeSequenceAction, changeCurrentSong, changeCurLyricIndexAction, changeIsshowPanelAction, changeIsShowVolumeAction } from '../store/actionCreator'
 
 import { getSizeImage, formatMinuteSecond, getPlaySong } from '@/utils/format-utils.js'
 
@@ -20,8 +20,9 @@ export default memo(function AppPlayerBar() {
   const [playbarWrapperBottom, setPlaybarWrapperBottom] = useState({ bottom: "-45px" });
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const { currentSong, sequence, lyricList, playList, curLyricIndex, isShowVolume , isshowPanel} = useSelector(state => ({
+  const { currentSong, sequence, lyricList, playList, curLyricIndex, isShowVolume, isshowPanel } = useSelector(state => ({
     currentSong: state.getIn(["player", "currentSong"]),
     sequence: state.getIn(["player", "sequence"]),
     lyricList: state.getIn(["player", "lyricList"]),
@@ -137,14 +138,18 @@ export default memo(function AppPlayerBar() {
     }
   }
 
-  const handleClick = (flag,e) =>{
-    if(!flag){
+  const handleClick = (flag, e) => {
+    if (!flag) {
       e.stopPropagation();
       e.preventDefault();
       return;
     }
     dispatch(changeIsShowVolumeAction(false));
     dispatch(changeIsshowPanelAction(false));
+  }
+
+  const linkto = (id) => {
+    history.push("/song?id=" + id)
   }
 
   return (
@@ -154,21 +159,21 @@ export default memo(function AppPlayerBar() {
       onMouseOver={() => setPlaybarWrapperStyle(true)}
       onMouseOut={() => setPlaybarWrapperStyle(false)}
       onClick={() => handleClick(true)}>
-      <div className="content wrap-v2" onClick={(e) => handleClick(false,e)}>
+      <div className="content wrap-v2" onClick={(e) => handleClick(false, e)}>
         <Control isPlaying={isPlaying}>
           <button className="sprite_player prev" onClick={e => changeMusic(-1)} title="上一首"></button>
           <button className="sprite_player play" onClick={() => PlayMusic()} title="播放/暂停"></button>
           <button className="sprite_player next" onClick={e => changeMusic(1)} title="下一首"></button>
         </Control>
         <PlayInfo>
-          <div className="image">
+          <NavLink to={"/song?id=" + currentSong.id} className="image">
             <img src={picUrl ? getSizeImage(picUrl, 35) : require('@/assets/img/default_album.jpg')} className={picUrl ? "" : "default_album"} alt="" />
-            <NavLink to="/discover/player" className={picUrl ? "" : "sprite_player placeholderImg"}>
-            </NavLink>
-          </div>
+            <div onClick={() => linkto(currentSong.id)} className={picUrl ? "" : "sprite_player placeholderImg"}>
+            </div>
+          </NavLink>
           <div className="info">
             <div className="song">
-              <NavLink to="/discover/player"><span className="song-name">{currentSong.name}</span></NavLink>
+              <NavLink to={"/song?id=" + currentSong.id}><span className="song-name">{currentSong.name}</span></NavLink>
               <a href="#/" className="singer-name">{singerName}</a>
             </div>
             <div className="progress">
@@ -207,7 +212,7 @@ export default memo(function AppPlayerBar() {
         className="hand"
         onMouseOver={() => setPlaybarWrapperStyle(true)}
         onMouseOut={() => setPlaybarWrapperStyle(false)}></div>
-      {isshowPanel && <AppPlayPanel onClick={(e) => handleClick(false,e)} />}
+      {isshowPanel && <AppPlayPanel onClick={(e) => handleClick(false, e)} />}
     </PlaybarWrapper>
   )
 })

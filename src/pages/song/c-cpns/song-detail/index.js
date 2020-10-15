@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { SongDetailWarpper } from './style'
 import { getLyric } from '@/services/player'
 import { parseLyricAnd_N } from '@/utils/parse-lyric'
@@ -56,7 +57,7 @@ export default memo(function SongDetail(props) {
             歌手：<span>{(curSong.ar && curSong.ar[0].name) || "未知歌手"}</span>
           </div>
           <div className="album-name">
-            所属专辑：<span>{curSong.al && curSong.al.name}</span>
+            所属专辑：<NavLink to={"/album?id=" + (curSong.al && curSong.al.id)}>{curSong.al && curSong.al.name}</NavLink>
           </div>
           <SongOperationBar favorTitle="收藏"
             shareTitle="分享"
