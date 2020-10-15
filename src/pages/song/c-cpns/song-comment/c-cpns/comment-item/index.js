@@ -33,7 +33,7 @@ export default memo(function CommentItem({ hotComment }) {
                     <div className="reply-content">
                       <span className="nickname">{item.beReplied && item.beReplied[0].user.nickname}</span>
                       {/* <img src="https://p1.music.126.net/G2KYG9JjrGGP5grSaXOZaw==/109951163309837705.png?param=12y12" /> */}
-                    ：<span dangerouslySetInnerHTML={{ __html: item.beReplied.length > 0 ? item.beReplied[0].content.replace(/\n/g, "<br />") : "" }}></span>
+                    ：<span dangerouslySetInnerHTML={{ __html: (item.beReplied.length > 0 && item.beReplied[0].content !== null) > 0 ? item.beReplied[0].content.replace(/\n/g, "<br />") : "" }}></span>
                     </div>
 
                   </div>

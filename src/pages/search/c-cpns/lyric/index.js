@@ -7,6 +7,7 @@ import LyricItem from './c-cpns/lyric-item'
 
 export default memo(function Lyric(props) {
   const { result } = props;
+  console.log(result)
 
   return (
     <SongsWarpper>
