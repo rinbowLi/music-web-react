@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { NavLink } from "react-router-dom"
+import { NavLink, useHistory } from "react-router-dom"
 
 import { getSizeImage } from '@/utils/format-utils';
 
@@ -13,6 +13,7 @@ export default memo(function AlbumCover(props) {
   // state and props
   const { info, size = 130, width = 153, bgp = "-845px" } = props;
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const getAndPlayList = (id) => {
     getAlbumDetail(id).then(res => {
@@ -21,12 +22,16 @@ export default memo(function AlbumCover(props) {
     })
   }
 
+  const linkto = (id) => {
+    history.push("/album?id=" + id)
+  }
+
   return (
     <AlbumWrapper size={size} width={width} bgp={bgp}>
       <NavLink to={"/album?id=" + info.id}>
         <div className="album-image">
           <img src={getSizeImage(info.picUrl, size)} alt="" />
-          <NavLink  to={"/album?id=" + info.id} className="cover image_cover">{info.name}</NavLink>
+          <div onClick={() => linkto(info.id)} className="cover image_cover">{info.name}</div>
           <i className="sprite_icon play" title="播放" onClick={() => getAndPlayList(info.id)}></i>
         </div>
         <div className="album-info">
