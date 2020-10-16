@@ -1,10 +1,11 @@
 import React, { memo } from 'react';
+import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types';
 
 import { HeaderWrapper } from './style';
 
-const ThemeHeaderRCM = memo(function(props) {
-  const { title, keywords } = props;
+const ThemeHeaderRCM = memo(function (props) {
+  const { title, keywords, link } = props;
 
   return (
     <HeaderWrapper className="sprite_02">
@@ -15,7 +16,7 @@ const ThemeHeaderRCM = memo(function(props) {
             keywords.map((item, index) => {
               return (
                 <div className="item" key={item}>
-                  <a href="todo">{item}</a>
+                  <NavLink to={"/discover/songs?cat=" + item} href="todo">{item}</NavLink>
                   <span className="divider">|</span>
                 </div>
               )
@@ -24,7 +25,7 @@ const ThemeHeaderRCM = memo(function(props) {
         </div>
       </div>
       <div className="right">
-        <a href="todo">更多</a>
+        <NavLink to={link}>更多</NavLink>
         <i className="icon sprite_02"></i>
       </div>
     </HeaderWrapper>

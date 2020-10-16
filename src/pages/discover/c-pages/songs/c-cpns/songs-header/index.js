@@ -20,12 +20,12 @@ export default memo(function SongsHeader() {
   return (
     <HeaderWrapper>
       <HeaderLeft>
-        <span className="title">{currentCategory}</span>
+        <span className="title">{currentCategory || "全部"}</span>
         <button className="select" onClick={e => setShowCategory(!showCategory)}>
           <span>选择分类</span>
           <i className="sprite_icon2"></i>
         </button>
-        {showCategory ? <SongsCategory /> : null}
+        {showCategory ? <SongsCategory setShowCategory={setShowCategory} /> : null}
       </HeaderLeft>
       <HeaderRight>
         <button className="hot">热门</button>

@@ -6,7 +6,7 @@ import CommentItem from "../comment-item";
 export default memo(function CommentHot({ hotComment, title }) {
   return (
     <CommentHotWarpper>
-      <h3>{title}</h3>
+      {(hotComment && hotComment.length > 0) && <h3>{title}</h3>}
       <CommentItem hotComment={hotComment} />
     </CommentHotWarpper>
   );

@@ -42,7 +42,7 @@ export default memo(function Playlist({ playlistDetail }) {
                 <div className="w2 text-nowrap"><NavLink to={"/song?id=" + item.id}>{item.name}</NavLink></div>
                 <div className="w3 text-nowrap time">{formatMinuteSecond(item.dt)}</div>
                 <div className="w4 text-nowrap">{item.ar.map(item => item.name).join("/")}</div>
-                <div className="w5 text-nowrap"><NavLink to={"/album?id=" + item.al.id}>{item.al.name}</NavLink></div>
+                <div className="w5 text-nowrap"><NavLink to={"/album?id=" + (item.al && item.al.id)}>{(item.al && item.al.name)}</NavLink></div>
               </div>)
             })
           }

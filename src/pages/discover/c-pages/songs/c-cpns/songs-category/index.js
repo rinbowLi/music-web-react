@@ -1,32 +1,23 @@
 import React, { memo } from 'react';
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { useSelector, shallowEqual } from "react-redux";
+import { NavLink } from 'react-router-dom'
 
-import {
-  changeCurrentCategoryAction,
-  getSongList
-} from "../../store/actionCreators";
 
 import {
   CategoryWrapper
 } from "./style";
 
-export default memo(function SongsCategory() {
+export default memo(function SongsCategory({ setShowCategory }) {
   // redux
   const { category } = useSelector(state => ({
     category: state.getIn(["songs", "category"])
   }), shallowEqual);
-  const dispatch = useDispatch();
-
-  function selectCategory(name) {
-    dispatch(changeCurrentCategoryAction(name));
-    dispatch(getSongList(0));
-  }
 
   return (
     <CategoryWrapper>
       <div className="arrow sprite_icon"></div>
       <div className="all">
-        <span className="link" onClick={e => selectCategory("全部")}>全部风格</span>
+        <NavLink to="/discover/songs" onClick={() => setShowCategory(false)} className="link">全部风格</NavLink>
       </div>
       <div className="category">
         {
@@ -42,7 +33,7 @@ export default memo(function SongsCategory() {
                     item.subs.map(sItem => {
                       return (
                         <div className="item" key={sItem.name}>
-                          <span className="link" onClick={e => selectCategory(sItem.name)}>{sItem.name}</span>
+                          <NavLink to={"/discover/songs?cat=" + sItem.name} onClick={() => setShowCategory(false)} className="link" >{sItem.name}</NavLink>
                           <span className="divider">|</span>
                         </div>
                       )

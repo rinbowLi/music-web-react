@@ -26,7 +26,7 @@ export default memo(function NewAlbum() {
 
   return (
     <AlbumWrapper>
-      <ThemeReaderRcm title="新碟上架" />
+      <ThemeReaderRcm title="新碟上架" link={"/discover/album"} />
       <div className="content">
         <button className="arrow arrow-left sprite_02" onClick={e => pageRef.current.prev()}></button>
         <div className="album">

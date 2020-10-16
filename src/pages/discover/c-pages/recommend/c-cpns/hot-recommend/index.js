@@ -23,7 +23,7 @@ export default memo(function HotRecommend() {
 
   return (
     <HotRecommendWrapper>
-      <ThemeReaderRcm title="热门推荐" keywords={["华语", "流行", "摇滚", "民谣", "电子"]} />
+      <ThemeReaderRcm title="热门推荐" keywords={["华语", "流行", "摇滚", "民谣", "电子"]} link={"/discover/songs"} />
       <div className="recommend-list">
         {
           hotRecommends.map((item) => {

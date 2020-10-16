@@ -29,9 +29,14 @@ export default memo(function MyAppHeader() {
   const getSearchSuggest = (e) => {
     //异步判断是否显示提示框
     new Promise((resolve, reject) => {
-      dispatch(getSearchSuggestAction(e.currentTarget.value));
-      setKeywords(e.currentTarget.value)
-      resolve(1)
+      const value = e.currentTarget.value;
+      setKeywords(value);
+      if (value) {
+        dispatch(getSearchSuggestAction(value));
+        resolve(1);
+      } else {
+        reject(0)
+      }
     }).then(() => {
       if (Object.keys(searchSuggest).length > 0) {
         setShowSuggest(true)
@@ -63,7 +68,7 @@ export default memo(function MyAppHeader() {
   const handleBlur = () => {
     setTimeout(() => {
       setShowSuggest(false)
-    }, 100)
+    }, 300)
   }
 
 

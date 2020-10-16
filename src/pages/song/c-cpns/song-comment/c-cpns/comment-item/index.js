@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import { NavLink } from 'react-router-dom'
 import { CommentItemWarpper } from "./style";
 
 import {
@@ -14,15 +15,15 @@ export default memo(function CommentItem({ hotComment }) {
         hotComment.map((item) => {
           return (
             <div className="box" key={item.commentId}>
-              <div className="left">
+              <NavLink to={"/user?id=" + item.user.userId} className="left">
                 <img
                   src={getSizeImage(item.user.avatarUrl, 50)}
                   alt={item.user.nickname}
                 />
-              </div>
+              </NavLink>
               <div className="right">
                 <div className="top">
-                  <span>{item.user.nickname}</span>
+                  <NavLink className="user" to={"/user?id=" + item.user.userId}>{item.user.nickname}</NavLink>
                   {/* <img src="https://p1.music.126.net/G2KYG9JjrGGP5grSaXOZaw==/109951163309837705.png?param=12y12" /> */}
                   ：{item.content}
                 </div>
@@ -31,7 +32,7 @@ export default memo(function CommentItem({ hotComment }) {
                   <div className="beReply">
                     <span className="darr"><i className="bd">◆</i><i className="bg">◆</i></span>
                     <div className="reply-content">
-                      <span className="nickname">{item.beReplied && item.beReplied[0].user.nickname}</span>
+                      <NavLink to={"/user?id=" + (item.beReplied && item.beReplied[0].user.userId)} className="nickname">{item.beReplied && item.beReplied[0].user.nickname}</NavLink>
                       {/* <img src="https://p1.music.126.net/G2KYG9JjrGGP5grSaXOZaw==/109951163309837705.png?param=12y12" /> */}
                     ：<span dangerouslySetInnerHTML={{ __html: (item.beReplied.length > 0 && item.beReplied[0].content !== null) > 0 ? item.beReplied[0].content.replace(/\n/g, "<br />") : "" }}></span>
                     </div>

@@ -20,7 +20,6 @@ export default memo(function SongDetail(props) {
   //解析query
   useEffect(() => {
     getSongsDetail(props.id).then(res => {
-      console.log(res)
       setcurSong(res.songs[0])
     })
 

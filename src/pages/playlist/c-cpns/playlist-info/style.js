@@ -60,17 +60,18 @@ export const SongDetailWarpper = styled.div`
           width:40px;
           height:40px;
           margin-right: 10px;
+          display:block;
         }
         .createtime{
           margin-left: 15px;
           color: #999;
           font-size:12px;
         }
-        span {
+        .username {
           color: #0c73c2;
           cursor: pointer;
         }
-        span:hover{
+        .username:hover{
           text-decoration:underline;
         }
       }

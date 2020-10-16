@@ -12,7 +12,7 @@ import { TopRankingWrapper } from './style';
 export default memo(function TopRanking(props) {
   // props and state
   const { info } = props;
-  const { tracks = [] } = info;
+  const tracks = (info && info.tracks) || [];
 
   // redux hooks
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export default memo(function TopRanking(props) {
     <TopRankingWrapper>
       <div className="header">
         <div className="image">
-          <img src={getSizeImage(info.coverImgUrl)} alt="" />
+          <img src={getSizeImage(info && info.coverImgUrl)} alt="" />
           <a href="/todo" className="image_cover">ranking</a>
         </div>
         <div className="info">

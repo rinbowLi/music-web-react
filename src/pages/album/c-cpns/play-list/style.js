@@ -45,6 +45,8 @@ export const PlaylistWrapper = styled.div`
       }
       .w5{
         width: 20%;
+        display:block;
+        line-height:30px;
       }
     .list-header{
       display:flex;

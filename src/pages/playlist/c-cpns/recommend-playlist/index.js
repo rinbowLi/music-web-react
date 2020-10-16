@@ -11,7 +11,6 @@ export default memo(function RecommendPlaylist({ id }) {
   const [playlist, setplaylist] = useState([])
   useEffect(() => {
     getRelatedPlaylist(id).then(res => {
-      console.log(res)
       setplaylist(res.playlists)
     })
   }, [id]);

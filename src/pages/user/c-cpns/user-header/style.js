@@ -58,11 +58,20 @@ export const UserHeaderWrapper = styled.div`
             vertical-align: -1px;
           }
         }
-        .sex{
+        .female{
           margin-left: 8px;
           width: 20px;
           height: 20px;
           background-position: -41px -27px;
+          display: inline-block;
+          overflow: hidden;
+          vertical-align: middle;
+        }
+        .male{
+          background-position: -41px -57px;
+          margin-left: 8px;
+          width: 20px;
+          height: 20px;
           display: inline-block;
           overflow: hidden;
           vertical-align: middle;

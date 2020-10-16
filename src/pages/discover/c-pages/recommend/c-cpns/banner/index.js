@@ -29,14 +29,27 @@ export default memo(function TopBanner() {
     setcurrentIndex(to)
   }, [])
 
-  const handleLink = (id, type) => {
-    if (type === 1) {
-      return "/song?id=" + id;
+  const handleLink = (item) => {
+    const { targetId, targetType, url } = item
+    //1--单曲，1004--mv,10--专辑，3000-其他
+    if (targetType === 1) {
+      return (<NavLink className="banner-item" to={"/song?id=" + targetId} key={item.imageUrl}>
+        <img className="image" src={item.imageUrl} alt={item.typeTitle} />
+      </NavLink>);
     }
-    else if (type === 10) {
-      return "/album?id=" + id;
+    else if (targetType === 10) {
+      return (<NavLink className="banner-item" to={"/album?id=" + targetId} key={item.imageUrl}>
+        <img className="image" src={item.imageUrl} alt={item.typeTitle} />
+      </NavLink>);
     }
-    return "/";
+    else if (targetType === 3000) {
+      return (<a className="banner-item" href={url} target="_blank" rel="noopener noreferrer" key={item.imageUrl}>
+        <img className="image" src={item.imageUrl} alt={item.typeTitle} />
+      </a>);
+    }
+    return (<NavLink className="banner-item" to={"/"} key={item.imageUrl}>
+      <img className="image" src={item.imageUrl} alt={item.typeTitle} />
+    </NavLink>);
   }
 
 
@@ -49,9 +62,7 @@ export default memo(function TopBanner() {
           <Carousel effect="fade" autoplay ref={bannerRef} beforeChange={bannerChange}>
             {
               topBanners.map(item => (
-                <NavLink className="banner-item" to={handleLink(item.targetId, item.targetType)} key={item.imageUrl}>
-                  <img className="image" src={item.imageUrl} alt={item.typeTitle} />
-                </NavLink>
+                handleLink(item)
               ))
             }
           </Carousel>

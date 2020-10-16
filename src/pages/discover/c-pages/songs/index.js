@@ -1,11 +1,12 @@
 import React, { useEffect, memo } from 'react';
 import { useDispatch } from "react-redux";
 import { useLocation } from 'react-router-dom';
+import { parse } from 'query-string'
 
-import { 
+import {
   getCategory,
   getSongList,
-  changeCurrentCategoryAction
+  getAndChangeCurrentCategoryAction
 } from "./store/actionCreators";
 
 import SongsHeader from "./c-cpns/songs-header";
@@ -17,10 +18,10 @@ import {
 export default memo(function Songs() {
   // redux
   const dispatch = useDispatch();
-  const cat = useLocation().cat;
+  const cat = parse(useLocation().search).cat || "全部";
 
   useEffect(() => {
-    dispatch(changeCurrentCategoryAction(cat));
+    dispatch(getAndChangeCurrentCategoryAction(cat));
   }, [dispatch, cat]);
 
   // hooks
@@ -31,8 +32,8 @@ export default memo(function Songs() {
 
   return (
     <SongsWrapper className="wrap-v2">
-      <SongsHeader/>
-      <SongsList/>
+      <SongsHeader />
+      <SongsList />
     </SongsWrapper>
   )
 })

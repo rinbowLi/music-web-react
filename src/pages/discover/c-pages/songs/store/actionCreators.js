@@ -44,3 +44,11 @@ export const getSongList = (page) => {
     })
   }
 }
+
+export const getAndChangeCurrentCategoryAction = (name) =>{
+  return dispatch => {
+    dispatch(changeCurrentCategoryAction(name));
+    dispatch(getSongList(0));
+  }
+
+}

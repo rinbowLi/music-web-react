@@ -12,6 +12,7 @@ export const CommentItemWarpper = styled.div`
       width: 50px;
       height: 50px;
       margin-right: 10px;
+      display:block;
       img {
         width: 50px;
         height: 50px;
@@ -22,7 +23,7 @@ export const CommentItemWarpper = styled.div`
       .top {
         background-color: #ffffff;
         height: auto;
-        span {
+        .user {
           color: #0c73c2;
           margin-right: 5px;
           cursor: pointer;

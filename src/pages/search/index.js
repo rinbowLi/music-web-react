@@ -170,8 +170,8 @@ export default memo(function Search() {
     new Promise((resolve, reject) => {
       const value = inputRef.current.value;
       if (value) {
-        dispatch(getSearchSuggestAction(inputRef.current.value));
-        dispatch(changeKeywordsAction(inputRef.current.value));
+        dispatch(getSearchSuggestAction(value));
+        dispatch(changeKeywordsAction(value));
         resolve(1)
       } else {
         reject(0)
@@ -198,7 +198,7 @@ export default memo(function Search() {
   const handleBlur = () => {
     setTimeout(() => {
       setShowSuggest(false)
-    }, 100)
+    }, 300)
   }
 
   return (

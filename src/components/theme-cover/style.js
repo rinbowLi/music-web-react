@@ -6,6 +6,7 @@ export const ThemeCoverWrapper = styled.div`
 
   .cover-top {
     position: relative;
+    display:block;
 
     &>img {
       width: 140px;
@@ -46,6 +47,7 @@ export const ThemeCoverWrapper = styled.div`
           width: 16px;
           height: 17px;
           background-position: 0 0;
+          cursor: pointer;
         }
       }
     }
@@ -55,9 +57,11 @@ export const ThemeCoverWrapper = styled.div`
     font-size: 14px;
     color: #000;
     margin-top: 5px;
+    display:block;
   }
 
   .cover-source {
     color: #666;
+    display:block;
   }
 `

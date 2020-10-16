@@ -26,7 +26,7 @@ export default memo(function Ranking() {
 
   return (
     <RankingWrapper>
-      <ThemeReaderRcm title="榜单" />
+      <ThemeReaderRcm title="榜单" link={"/discover/ranking"} />
       <div className="tops">
         <TopRanking info={upRanking} />
         <TopRanking info={newRanking} />

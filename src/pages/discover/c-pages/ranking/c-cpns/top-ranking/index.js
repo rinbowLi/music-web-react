@@ -1,6 +1,8 @@
 import React, { useEffect, memo } from 'react';
 import classNames from "classnames";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { useLocation, useHistory } from 'react-router-dom'
+import { parse } from 'query-string'
 
 import { getSizeImage } from "@/utils/format-utils";
 import {
@@ -18,21 +20,25 @@ export default memo(function TopRanking() {
     topList: state.getIn(["ranking", "topList"]),
     currentIndex: state.getIn(["ranking", "currentIndex"])
   }), shallowEqual);
-  const currentIndex = state.currentIndex;
   const dispatch = useDispatch();
+  const location = parse(useLocation().search);
+  const history = useHistory();
+
 
   // hooks
   useEffect(() => {
-    const id = (state.topList[currentIndex] && state.topList[currentIndex].id);
+    // const id = (state.topList[currentIndex] && state.topList[currentIndex].id);
+    const id = location.id || "19723756";
     if (!id) return;
     dispatch(getRanking(id))
-  }, [state, dispatch, currentIndex])
+  }, [location.id, dispatch])
 
   // handle function
   const hanldeItemClick = (index) => {
     dispatch(changeCurrentIndex(index));
-    const id = state.topList[currentIndex].id;
+    const id = state.topList[index].id;
     dispatch(getRanking(id))
+    history.push("/discover/ranking?id=" + id);
   }
 
   return (
@@ -46,7 +52,7 @@ export default memo(function TopRanking() {
           return (
             <div key={item.id}>
               {header}
-              <div className={classNames("item", { "active": index === currentIndex })}
+              <div className={classNames("item", { "active": Number(location.id) === item.id })}
                 onClick={e => hanldeItemClick(index)}>
                 <img src={getSizeImage(item.coverImgUrl, 40)} alt="" />
                 <div className="info">

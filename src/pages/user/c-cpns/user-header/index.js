@@ -3,7 +3,6 @@ import { UserHeaderWrapper } from './style'
 import { getSizeImage } from '@/utils/format-utils'
 
 export default memo(function UserHeader({ userInfo }) {
-  console.log(userInfo)
   return (
     <UserHeaderWrapper>
       <div className="left">
@@ -14,7 +13,7 @@ export default memo(function UserHeader({ userInfo }) {
           <div className="username">{userInfo.profile && userInfo.profile.nickname}</div>
           <div className="level-and-sex">
             <span className="sprite_icon3 level"><span>{userInfo.level}</span><i className="sprite_icon3"></i></span>
-            <span className="sprite_icon2 sex"></span>
+            <span className={userInfo.profile &&userInfo.profile.gender===1?"sprite_icon2 male":"sprite_icon2 female"}></span>
           </div>
           <div className="button-box">
             <button className="sprite_button2 mail">发私信</button>
