@@ -23,7 +23,7 @@ export default memo(function PlayHeader() {
             <i className="sprite_playlist icon favor"></i>
             收藏全部
           </button>
-          <button onClick={()=>dispatch(changeCurrentPlayListAction([]))}>
+          <button className="remove-button" onClick={()=>dispatch(changeCurrentPlayListAction([]))}>
             <i className="sprite_playlist icon remove"></i>
             清除
           </button>

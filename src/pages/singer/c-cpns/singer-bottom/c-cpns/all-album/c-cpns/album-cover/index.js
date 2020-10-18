@@ -4,17 +4,17 @@ import { NavLink, useHistory } from "react-router-dom";
 import { getSizeImage } from "@/utils/format-utils";
 
 import { useDispatch } from "react-redux";
-import { getAlbumDetail } from "../../services/play-list";
+import { getAlbumDetail } from "@/services/play-list";
 import {
   getSongDetailAction,
   changeCurrentPlayListAction,
-} from "../../pages/player/store/actionCreator";
+} from "@/pages/player/store/actionCreator";
 
 import { AlbumWrapper } from "./style";
 
 export default memo(function AlbumCover(props) {
   // state and props
-  const { info, size = 130, width = 153, bgp = "-845px" } = props;
+  const { info, size = 130, width = 153, bgp = "0 -845px" } = props;
   const dispatch = useDispatch();
   const history = useHistory();
 

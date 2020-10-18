@@ -150,6 +150,14 @@ span:hover.link {
   background: url(../img/logo.png) no-repeat 0 9999px;
 }
 
+.ban_mask {
+  background: url(../img/ban_mask.png) no-repeat;
+}
+
+.icon3 {
+  background: url(../img/icon3.png) no-repeat;
+}
+
 .light{
   color:#0c73c2;
 }

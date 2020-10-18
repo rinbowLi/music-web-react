@@ -14,7 +14,7 @@ export function getSizeImage(imgUrl, size) {
 }
 
 export function getHeightAndWidthImage(imgUrl, height, width) {
-  return `${imgUrl}?param=${height}x${width}`;
+  return `${imgUrl}?param=${height}y${width}`;
 }
 
 export function formatDate(time, fmt) {
