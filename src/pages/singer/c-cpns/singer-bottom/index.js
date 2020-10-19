@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useState, useEffect } from "react";
 
 import { SingerBottomWarpper } from "./style";
 
@@ -13,45 +13,48 @@ import HotWorks from "./c-cpns/hot-works";
 import AllAlbum from "./c-cpns/all-album";
 import RelatedMV from "./c-cpns/related-mv";
 import SingerDesc from "./c-cpns/singer-desc";
-import { useEffect } from "react";
 
-export default memo(function SingerBottom({ curIndex }) {
+export default memo(function SingerBottom({ id, curIndex, headerData }) {
   const [data, setdata] = useState({});
   const [cpn, setCpn] = useState(null);
-  console.log(curIndex);
+
+  const getData = useCallback((fn) => {
+    fn(id).then((res) => {
+      setdata(res);
+    });
+  }, [id]);
 
   const handleCurIndex = useCallback(
     (curndex) => {
       switch (curndex) {
         case 0:
           getData(getSingerSongs);
-          return <HotWorks data={data} />;
+          setCpn(<HotWorks data={data} />);
+          break;
         case 1:
           getData(getSingerAlbum);
-          return <AllAlbum data={data} />;
+          setCpn(<AllAlbum data={data} />);
+          break;
         case 2:
           getData(getSingerMVs);
-          return <RelatedMV data={data} />;
+          setCpn(<RelatedMV data={data} />);
+          break;
         case 3:
           getData(getSingerDesc);
-          return <SingerDesc data={data} />;
+          setCpn(<SingerDesc data={data} headerData={headerData} />);
+          break;
         default:
           getData(getSingerSongs);
-          return <HotWorks data={data} />;
+          setCpn(<HotWorks data={data} />);
       }
     },
-    [data]
+    [data, headerData, getData, setCpn]
   );
 
   useEffect(() => {
-    setCpn(handleCurIndex(curIndex));
-  }, [setCpn, curIndex, handleCurIndex]);
+    handleCurIndex(curIndex);
+  }, [curIndex, handleCurIndex]);
 
-  const getData = (fn) => {
-    fn(3684).then((res) => {
-      console.log(res);
-      setdata(res);
-    });
-  };
+
   return <SingerBottomWarpper>{cpn}</SingerBottomWarpper>;
 });

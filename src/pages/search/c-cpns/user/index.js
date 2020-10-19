@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { NavLink } from 'react-router-dom';
 import { useSelector, shallowEqual } from "react-redux"
 import { UsersWarpper } from './style'
 
@@ -23,7 +24,7 @@ export default memo(function User(props) {
               </div>
               <div className="right text-nowrap">
                 <div className="name">
-                  <span dangerouslySetInnerHTML={{ __html: highLight(item.nickname, keywords) }}></span>{item.authStatus === 1 && <span className="icon2 band"></span>}
+                  <NavLink to={"/user?id=" + item.userId} dangerouslySetInnerHTML={{ __html: highLight(item.nickname, keywords) }}></NavLink>{item.authStatus === 1 && <span className="icon2 band"></span>}
                   <span className={item.gender === 1 ? "sprite_icon2 male" : "sprite_icon2 female"}></span>
                 </div>
                 <div className="sign text-nowrap"><span dangerouslySetInnerHTML={{ __html: highLight(item.signature, keywords) }}></span></div>

@@ -13,6 +13,7 @@ export const AlbumWrapper = styled.div`
     height: ${(props) => props.size + "px"};
     overflow: hidden;
     margin-top: 15px;
+    display:block;
 
     &:hover .play {
       visibility: visible;
@@ -55,10 +56,12 @@ export const AlbumWrapper = styled.div`
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      display:block;
     }
 
     .artist {
       color: #666;
+      display:block;
     }
   }
 `;

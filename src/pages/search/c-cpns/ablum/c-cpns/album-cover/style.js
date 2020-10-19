@@ -51,6 +51,7 @@ export const AlbumWrapper = styled.div`
     font-size: 12px;
     width: ${props => props.size};
     .name {
+      display:block;
       color: #000;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -58,6 +59,7 @@ export const AlbumWrapper = styled.div`
     }
 
     .artist {
+      display:block;
       color: #666;
     }
   }

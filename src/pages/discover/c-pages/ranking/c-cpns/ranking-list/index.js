@@ -60,7 +60,7 @@ export default memo(function RankingList() {
                       </div>
                     </td>
                     <td>{formatMinuteSecond(item.dt)}</td>
-                    <td>{item.ar[0].name}</td>
+                    <td><NavLink to={"/singer?id=" + item.ar[0].id}>{item.ar[0].name}</NavLink></td>
                   </tr>
                 )
               })

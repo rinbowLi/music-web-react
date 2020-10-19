@@ -15,7 +15,7 @@ export default memo(function SingerRight() {
   }, []);
   return (
     <SingerRightWarpper>
-      <div className="title">推荐歌单</div>
+      <div className="title">热门歌手</div>
       <div className="singer-list">
         {singerData.map((item) => {
           return (

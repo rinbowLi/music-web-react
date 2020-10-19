@@ -53,7 +53,7 @@ export default memo(function SongDetail(props) {
             <span className="song-name">{curSong.name}</span>
           </div>
           <div className="singer-name">
-            歌手：<span>{(curSong.ar && curSong.ar[0].name) || "未知歌手"}</span>
+            歌手：<NavLink to={"/singer?id=" + (curSong.ar && curSong.ar[0].id)}>{(curSong.ar && curSong.ar[0].name) || "未知歌手"}</NavLink>
           </div>
           <div className="album-name">
             所属专辑：<NavLink to={"/album?id=" + (curSong.al && curSong.al.id)}>{curSong.al && curSong.al.name}</NavLink>

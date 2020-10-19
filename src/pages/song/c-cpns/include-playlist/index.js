@@ -24,7 +24,7 @@ export default memo(function IncludePlayList() {
                   {item.title}
                 </NavLink>
                 <div className="owner-name text-nowrap">
-                  by <span>{item.owner}</span>
+                  by <NavLink to={"/user?id=" + item.ownerId}>{item.owner}</NavLink>
                 </div>
               </div>
             </div>

@@ -1,5 +1,6 @@
 import React, { memo, useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import { parse } from 'query-string'
 import {
   SingerBoxWarpper,
   SingerWarpper,
@@ -8,7 +9,7 @@ import {
   TopMenu,
 } from "./style";
 import { dicoverMenu } from "@/common/local-data";
-import { getSingerSongs } from "@/services/singer";
+import { getSingerAlbum } from "@/services/singer";
 
 import SingerTop from "./c-cpns/singer-top";
 import SingerBottom from "./c-cpns/singer-bottom";
@@ -17,13 +18,14 @@ import SingerRight from "./c-cpns/singer-right";
 export default memo(function Singer() {
   const [headerData, setheaderData] = useState({});
   const [curIndex, setcurIndex] = useState(0);
+  const id = parse(useLocation().search).id;
 
   useEffect(() => {
-    getSingerSongs(3684).then((res) => {
-      console.log(res);
+    getSingerAlbum(id).then((res) => {
       setheaderData(res.artist);
     });
-  }, [curIndex]);
+  }, [id, curIndex, setheaderData]);
+
   return (
     <SingerBoxWarpper>
       <div className="top">
@@ -44,7 +46,7 @@ export default memo(function Singer() {
             curIndex={curIndex}
             setcurIndex={setcurIndex}
           />
-          <SingerBottom curIndex={curIndex} />
+          <SingerBottom id={id} curIndex={curIndex} headerData={headerData} />
         </SingerLeftWrapper>
         <SingerRightWrapper>
           <SingerRight />

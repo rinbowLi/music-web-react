@@ -36,11 +36,9 @@ export default memo(function NewAlbum() {
                 return (
                   <div key={item} className="page">
                     {
-                      newAlbum.slice(item * 5, (item + 1) * 5).map((iten) => {
+                      newAlbum && newAlbum.slice(item * 5, (item + 1) * 5).map((iten) => {
                         return (
-                          <AlbumCover key={iten.id} info={iten} size={100} width={118} bgp="-570px">
-
-                          </AlbumCover>
+                          <AlbumCover key={iten.id} info={iten} size={100} width={118} bgp="-570px" />
                         )
                       })
 
@@ -48,9 +46,6 @@ export default memo(function NewAlbum() {
                   </div>
                 )
               })
-              // newAlbum.map((item) => {
-              //   return <Carousel key={item.id}>{item.name}</Carousel>
-              // })
             }
           </Carousel>
         </div>

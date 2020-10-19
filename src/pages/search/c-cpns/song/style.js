@@ -30,6 +30,7 @@ export const SongsWarpper = styled.div`
       }
     }
     .singerName{
+      display:block;
       width:20%;
       text-overflow:ellipsis;
       overflow:hidden;

@@ -27,7 +27,7 @@ export default memo(function RecommendPlaylist({ id }) {
               </div>
               <div className="right">
                 <NavLink to={"/playlist?id=" + item.id} className="playlist-name text-nowrap">{item.name}</NavLink>
-                <div className="owner-name">{item.creator && item.creator.nickname}</div>
+                <NavLink to={"/user?id=" + (item.creator && item.creator.userId)} className="owner-name">{item.creator && item.creator.nickname}</NavLink>
               </div>
             </div>)
           })

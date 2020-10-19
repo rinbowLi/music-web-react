@@ -5,6 +5,7 @@ export const ItemWrapper = styled.div`
   margin-top: 15px;
 
   .image {
+    display:block-size;
     img {
       width: 130px;
       height: 130px;

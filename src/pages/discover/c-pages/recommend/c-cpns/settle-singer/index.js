@@ -1,5 +1,6 @@
 import React, { useEffect, memo } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { NavLink } from 'react-router-dom'
 
 import {
   getSettleSingers
@@ -32,19 +33,19 @@ export default memo(function SettleSinger() {
         {
           state.settleSings.map((item, index) => {
             return (
-              <a href="/singer" key={item.id} className="item">
+              <NavLink to={"/singer?id=" + item.id} key={item.id} className="item">
                 <img src={getSizeImage(item.img1v1Url, 62)} alt="" />
                 <div className="info">
                   <div className="title">{item.alias.join("") || item.name}</div>
                   <div className="name">{item.name}</div>
                 </div>
-              </a>
+              </NavLink>
             )
           })
         }
       </div>
       <div className="apply-for">
-        <a href="/abc">申请成为网易音乐人</a>
+        <a href="https://music.163.com/nmusician/web/index#/" target="_blank" rel="noopener noreferrer">申请成为网易音乐人</a>
       </div>
     </SetterSongerWrapper>
   )

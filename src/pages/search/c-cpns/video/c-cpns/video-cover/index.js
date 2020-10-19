@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { NavLink } from 'react-router-dom'
 import { VideoCoverWarpper } from './style'
 
 
@@ -22,7 +23,7 @@ export default memo(function VideoCover(props) {
       </div>
       <div className="bottom">
         <div className="title text-nowrap"><span dangerouslySetInnerHTML={{ __html: highLight(info.title || "", keywords) }}></span></div>
-        <div className="by text-nowrap">by&nbsp;<span dangerouslySetInnerHTML={{ __html: highLight(info.creator && info.creator[0] ? info.creator[0].userName : "未知来源", keywords) }}></span></div>
+        <NavLink to={(info.type === 0 ? "/singer?id=" : "/user?id=") + (info.creator && info.creator[0].userId)} className="by text-nowrap">by&nbsp;<span dangerouslySetInnerHTML={{ __html: highLight(info.creator && info.creator[0] ? info.creator[0].userName : "未知来源", keywords) }}></span></NavLink>
       </div>
     </VideoCoverWarpper>
   )

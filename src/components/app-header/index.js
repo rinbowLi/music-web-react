@@ -108,7 +108,7 @@ export default memo(function MyAppHeader() {
                 <div className="right">
                   {
                     searchSuggest && searchSuggest.artists && searchSuggest.artists.map(item => {
-                      return (<div className="list-item text-nowrap" key={item.id}><span dangerouslySetInnerHTML={{ __html: highLight(item.name, keywords) }}></span></div>)
+                      return (<NavLink to={"/singer?id=" + item.id} className="list-item text-nowrap" key={item.id}><span dangerouslySetInnerHTML={{ __html: highLight(item.name, keywords) }}></span></NavLink>)
                     })
                   }
                 </div>

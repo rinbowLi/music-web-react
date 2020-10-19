@@ -10,7 +10,7 @@ export function getCount(count) {
 }
 
 export function getSizeImage(imgUrl, size) {
-  return `${imgUrl}?param=${size}x${size}`;
+  return `${imgUrl}?param=${size}y${size}`;
 }
 
 export function getHeightAndWidthImage(imgUrl, height, width) {

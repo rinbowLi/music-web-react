@@ -61,11 +61,11 @@ export const SongDetailWarpper = styled.div`
           font-size:12px;
           margin-top:5px;
         }
-        span {
+        a {
           color: #0c73c2;
           cursor: pointer;
         }
-        span:hover{
+        a:hover{
           text-decoration:underline;
         }
       }

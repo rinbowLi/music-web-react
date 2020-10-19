@@ -16,17 +16,15 @@ export default memo(function AlbumCover(props) {
 
   return (
     <AlbumWrapper size={size} width={width} bgp={bgp}>
-      <NavLink to={"/album?id=" + info.id}>
-        <div className="album-image">
-          <img src={getSizeImage(info.picUrl, size)} alt="" />
-          <NavLink to={"/album?id=" + info.id} className="cover image_cover">{info.name}</NavLink>
-          <i className="sprite_icon play" title="播放"></i>
-        </div>
-        <div className="album-info">
-          <div className="name text-nowrap">  <span dangerouslySetInnerHTML={{ __html: highLight(info.name, keywords) }}></span></div>
-          <div className="artist text-nowrap">  <span dangerouslySetInnerHTML={{ __html: highLight(info.artist ? info.artist.name : "未知歌手", keywords) }}></span></div>
-        </div>
-      </NavLink>
+      <div className="album-image">
+        <img src={getSizeImage(info.picUrl, size)} alt="" />
+        <NavLink to={"/album?id=" + info.id} className="cover image_cover">{info.name}</NavLink>
+        <i className="sprite_icon play" title="播放"></i>
+      </div>
+      <div className="album-info">
+        <NavLink to={"/album?id=" + info.id} className="name text-nowrap">  <span dangerouslySetInnerHTML={{ __html: highLight(info.name, keywords) }}></span></NavLink>
+        <NavLink to={"/singer?id=" + (info.artist && info.artist.name)} className="artist text-nowrap">  <span dangerouslySetInnerHTML={{ __html: highLight(info.artist ? info.artist.name : "未知歌手", keywords) }}></span></NavLink>
+      </div>
     </AlbumWrapper>
   )
 })

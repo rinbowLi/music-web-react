@@ -5,6 +5,7 @@ export const AlbumWrapper = styled.div`
 
   .album-image {
     position: relative;
+    display:block;
     width: ${props => props.width + "px"};
     height: ${props => props.size + "px"};
     overflow: hidden;
@@ -51,10 +52,12 @@ export const AlbumWrapper = styled.div`
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      display:block;
     }
 
     .artist {
       color: #666;
+      display:block;
     }
   }
 `

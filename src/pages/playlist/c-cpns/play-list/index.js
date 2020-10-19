@@ -14,6 +14,14 @@ export default memo(function Playlist({ playlistDetail }) {
   const playMusic = (id) => {
     dispatch(getSongDetailAction(id));
   }
+  const handleSingerLink = (data) => {
+    const arr = [];
+    data.forEach((item, index) => {
+      arr.push(<NavLink to={"/singer?id=" + item.id}>{item.name}</NavLink>);
+      if (index !== data.length - 1) arr.push("/")
+    });
+    return arr;
+  }
 
   return (
     <PlaylistWrapper>
@@ -41,7 +49,7 @@ export default memo(function Playlist({ playlistDetail }) {
                 <div className="w1 code">{index + 1}<i className="sprite_table play" title="播放" onClick={() => playMusic(item.id)}></i></div>
                 <div className="w2 text-nowrap"><NavLink to={"/song?id=" + item.id}>{item.name}</NavLink></div>
                 <div className="w3 text-nowrap time">{formatMinuteSecond(item.dt)}</div>
-                <div className="w4 text-nowrap">{item.ar.map(item => item.name).join("/")}</div>
+                <div className="w4 text-nowrap">{handleSingerLink(item.ar)}</div>
                 <div className="w5 text-nowrap"><NavLink to={"/album?id=" + (item.al && item.al.id)}>{(item.al && item.al.name)}</NavLink></div>
               </div>)
             })

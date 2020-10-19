@@ -33,8 +33,7 @@ export default memo(function AlbumCover(props) {
 
   return (
     <AlbumWrapper size={size} width={width} bgp={bgp}>
-      <NavLink to={"/album?id=" + info.id}>
-        <div className="album-image">
+        <NavLink to={"/album?id=" + info.id} className="album-image">
           <img src={getSizeImage(info.picUrl, size)} alt="" />
           <div onClick={() => linkto(info.id)} className="cover image_cover">
             {info.name}
@@ -44,12 +43,11 @@ export default memo(function AlbumCover(props) {
             title="播放"
             onClick={(e) => getAndPlayList(info.id, e)}
           ></i>
-        </div>
+        </NavLink>
         <div className="album-info">
-          <div className="name text-nowrap">{info.name}</div>
-          <div className="artist text-nowrap">{info.artist.name}</div>
+          <NavLink to={"/album?id=" + info.id} className="name text-nowrap">{info.name}</NavLink>
+          <NavLink to={"/singer?id=" + info.artist.id} className="artist text-nowrap">{info.artist.name}</NavLink>
         </div>
-      </NavLink>
     </AlbumWrapper>
   );
 });

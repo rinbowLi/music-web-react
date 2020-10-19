@@ -33,9 +33,9 @@ export default memo(function SimilarSongs({ id }) {
                 >
                   {item.name}
                 </NavLink>
-                <div className="singer-name">
+                <NavLink to={"/singer?id=" + (item.artists && item.artists[0].id)} className="singer-name">
                   {item.artists && item.artists[0].name}
-                </div>
+                </NavLink>
               </div>
               <div className="right">
                 <span

@@ -58,7 +58,7 @@ export const SongDetailWarpper = styled.div`
         margin: 10px 0;
         color: #999;
         font-size: 12px;
-        span {
+        a {
           color: #0c73c2;
         }
       }

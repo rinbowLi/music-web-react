@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import {NavLink} from "react-router-dom"
 
 import { getSizeImage } from '@/utils/format-utils';
 
@@ -11,13 +12,13 @@ export default memo(function ArtistItemV1(props) {
     <ItemWrapper>
       {
         index < 10 && (
-          <div className="image">
+          <NavLink to={"/singer?id="+info.id} className="image">
             <img src={getSizeImage(info.img1v1Url, 130)} alt="" />
-          </div>
+          </NavLink>
         )
       }
       <div className="info">
-        <span className="name">{info.name}</span>
+        <NavLink to={"/singer?id="+info.id} className="name">{info.name}</NavLink>
         <i className="sprite_icon2 icon"></i>
       </div>
     </ItemWrapper>

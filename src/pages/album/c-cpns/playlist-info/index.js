@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { NavLink } from 'react-router-dom'
 
 import { SongDetailWarpper } from './style'
 import { getSizeImage, formatYearMonthDay } from '@/utils/format-utils'
@@ -26,7 +27,7 @@ export default memo(function PlaylistInfo({ playlistDetail }) {
             <span className="song-name">{album && album.name}</span>
           </div>
           <div className="singer-name">
-            <div className="name">歌手：<span>{(album && album.artist.name) || "未知歌手"}</span></div>
+            <div className="name">歌手：<NavLink to={"/singer?id=" + (album && album.artist.id)}>{(album && album.artist.name) || "未知歌手"}</NavLink></div>
             <div className="createtime">发行时间：{formatYearMonthDay(album && album.publishTime)}</div>
           </div>
           <SongOperationBar favorTitle="收藏"

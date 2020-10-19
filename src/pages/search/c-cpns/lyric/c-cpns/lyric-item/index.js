@@ -21,8 +21,8 @@ export default memo(function LyricItem(props) {
   return (
     <LyricsWarpper>
       <div className="item">
-        <div className="songName"><span className="table play" onClick={() => playMusic(item.id)}></span><span dangerouslySetInnerHTML={{ __html: highLight(item.name, keywords) }}></span></div>
-        <div className="singerName"><span dangerouslySetInnerHTML={{ __html: highLight(item.artists ? item.artists[0].name : "未知歌手", keywords) }}></span></div>
+        <div className="songName"><span className="table play" onClick={() => playMusic(item.id)}></span><NavLink to={"song?id=" + (item.id)} dangerouslySetInnerHTML={{ __html: highLight(item.name, keywords) }}></NavLink></div>
+        <div className="singerName"><NavLink to={"singer?id=" + (item.artists && item.artists[0].id)} dangerouslySetInnerHTML={{ __html: highLight(item.artists ? item.artists[0].name : "未知歌手", keywords) }}></NavLink></div>
         <div className="albumName"><NavLink to={"album?id=" + (item.album && item.album.id)} dangerouslySetInnerHTML={{ __html: highLight(item.album ? item.album.name : "未知专辑", keywords) }}></NavLink></div>
         <div className="time">{formatMinuteSecond(item.duration)}</div>
       </div>

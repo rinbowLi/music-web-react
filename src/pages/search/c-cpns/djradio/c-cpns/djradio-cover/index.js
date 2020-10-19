@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { NavLink } from 'react-router-dom'
 import { DjradioCoverWarpper } from './style'
 import { useSelector, shallowEqual } from "react-redux"
 
@@ -18,7 +19,7 @@ export default memo(function VideoCover(props) {
       </div>
       <div className="bottom">
         <div className="title text-nowrap"> <span dangerouslySetInnerHTML={{ __html: highLight(info.name, keywords) }}></span></div>
-        <div className="by text-nowrap">by&nbsp;<span dangerouslySetInnerHTML={{ __html: highLight(info.dj ? info.dj.nickname : "未知来源", keywords) }}></span></div>
+        <div className="by text-nowrap">by&nbsp;<NavLink to={"/user?id=" + (info.dj && info.dj.userId)} dangerouslySetInnerHTML={{ __html: highLight(info.dj ? info.dj.nickname : "未知来源", keywords) }}></NavLink></div>
       </div>
     </DjradioCoverWarpper>
   )

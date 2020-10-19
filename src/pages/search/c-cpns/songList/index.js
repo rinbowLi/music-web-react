@@ -32,7 +32,7 @@ export default memo(function SongList(props) {
             <div className="songName"><span className="table play" onClick={() => getAndPlayList(item.id)} ></span>
               <div className="img-box"><img src={getSizeImage(item.coverImgUrl, 50)} alt={item.name} /></div>
               <NavLink to={"/playlist?id=" + item.id} dangerouslySetInnerHTML={{ __html: highLight(item.name, keywords) }}></NavLink></div>
-            <div className="singerName"><span>{item.trackCount}首</span>by <span dangerouslySetInnerHTML={{ __html: highLight(item.creator ? item.creator.nickname : "未知歌手", keywords) }}></span></div>
+            <div className="singerName"><span>{item.trackCount}首</span>by <NavLink to={"/user?id=" + (item.creator && item.creator.userId)} dangerouslySetInnerHTML={{ __html: highLight(item.creator ? item.creator.nickname : "未知歌手", keywords) }}></NavLink></div>
             <div className="albumName">收藏：{item.bookCount}</div>
             <div className="time">收听：{getCount(item.playCount)}</div>
           </div>)
