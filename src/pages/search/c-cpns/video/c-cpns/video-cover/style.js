@@ -10,6 +10,7 @@ export const VideoCoverWarpper = styled.div`
     margin-right:0;
   }
   .cover{
+    display:block;
     width: 159px;
     height: 90px;
     position: relative;

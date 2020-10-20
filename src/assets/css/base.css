@@ -150,6 +150,10 @@ span:hover.link {
   background: url(../img/logo.png) no-repeat 0 9999px;
 }
 
+.sprite_mask {
+  background: url(../img/mask.png) no-repeat 0 9999px;
+}
+
 .ban_mask {
   background: url(../img/ban_mask.png) no-repeat;
 }

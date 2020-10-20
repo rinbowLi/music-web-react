@@ -8,7 +8,7 @@ import { getSongsComment } from '@/services/songs'
 
 import { SongWrapper, SongLeft, SongRight, SongBoxWrapper, TopMenu } from './style'
 import SongDetail from './c-cpns/song-detail'
-import SongComment from './c-cpns/song-comment'
+import Comment from '@/components/comment'
 import IncludePlayList from './c-cpns/include-playlist'
 import SimilarSongs from './c-cpns/similar-songs'
 import RightDownload from '@/components/right-download'
@@ -42,7 +42,7 @@ export default memo(function Song() {
       <SongWrapper className="wrap-v2">
         <SongLeft>
           <SongDetail id={location.id} total={songComment.total} />
-          <SongComment id={location.id} comment ={songComment} />
+          <Comment id={location.id} fn ={getSongsComment} />
         </SongLeft>
         <SongRight>
           <IncludePlayList id={location.id} />

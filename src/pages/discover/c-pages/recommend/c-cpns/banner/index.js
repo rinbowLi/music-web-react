@@ -42,6 +42,26 @@ export default memo(function TopBanner() {
         <img className="image" src={item.imageUrl} alt={item.typeTitle} />
       </NavLink>);
     }
+    else if (targetType === 1004) {
+      return (<NavLink className="banner-item" to={"/mv?id=" + targetId} key={item.imageUrl}>
+        <img className="image" src={item.imageUrl} alt={item.typeTitle} />
+      </NavLink>);
+    }
+    else if (targetType === 100) {
+      return (<NavLink className="banner-item" to={"/singer?id=" + targetId} key={item.imageUrl}>
+        <img className="image" src={item.imageUrl} alt={item.typeTitle} />
+      </NavLink>);
+    }
+    else if (targetType === 1000) {
+      return (<NavLink className="banner-item" to={"/playlist?id=" + targetId} key={item.imageUrl}>
+        <img className="image" src={item.imageUrl} alt={item.typeTitle} />
+      </NavLink>);
+    }
+    else if (targetType === 1002) {
+      return (<NavLink className="banner-item" to={"/user?id=" + targetId} key={item.imageUrl}>
+        <img className="image" src={item.imageUrl} alt={item.typeTitle} />
+      </NavLink>);
+    }
     else if (targetType === 3000) {
       return (<a className="banner-item" href={url} target="_blank" rel="noopener noreferrer" key={item.imageUrl}>
         <img className="image" src={item.imageUrl} alt={item.typeTitle} />

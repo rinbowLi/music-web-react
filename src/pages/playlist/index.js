@@ -7,9 +7,10 @@ import { getPlaylistDetail } from '@/services/play-list'
 
 import PlayInfo from './c-cpns/playlist-info'
 import PlayList from "./c-cpns/play-list"
-import PlayListComment from './c-cpns/playlist-comment'
+import Comment from '@/components/comment'
 import RecommendPlaylist from './c-cpns/recommend-playlist'
 import RightDownload from '@/components/right-download';
+import { getPlaylistComment } from '@/services/play-list'
 
 import { PlaylistWrapper, PlaylistLeft, PlaylistRight, PlaylistBoxWrapper, TopMenu } from './style'
 
@@ -43,7 +44,7 @@ export default memo(function Playlist() {
         <PlaylistLeft>
           <PlayInfo playlistDetail={playlistDetail} />
           <PlayList playlistDetail={playlistDetail} />
-          <PlayListComment id={location.id} />
+          <Comment id={location.id} fn={getPlaylistComment} />
         </PlaylistLeft>
         <PlaylistRight>
           <RecommendPlaylist id={location.id} />

@@ -19,6 +19,8 @@ const PlayList = lazy(() => import("../pages/playlist"))
 const Album = lazy(() => import("../pages/album"))
 const User = lazy(() => import("../pages/user"))
 const Singer = lazy(() => import("../pages/singer"))
+const MV = lazy(() => import("../pages/mv"))
+const Video = lazy(() => import("../pages/video"))
 
 
 const routes = [
@@ -103,7 +105,14 @@ const routes = [
     path: "/singer",
     component: Singer
   },
-
+  {
+    path: "/mv",
+    component: MV
+  },
+  {
+    path: "/video",
+    component: Video
+  },
 ];
 
 
