@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { NavLink } from 'react-router-dom'
 
 import {
   hotRadios
@@ -18,11 +19,11 @@ export default memo(function HotRadio() {
           hotRadios.map((item, index) => {
             return (
               <div className="item" key={item.picUrl}>
-                <a href="/abc" className="image">
+                <NavLink to={item.url} className="image">
                   <img src={item.picUrl} alt="" />
-                </a>
+                </NavLink>
                 <div className="info">
-                  <div className="name">{item.name}</div>
+                  <NavLink to={item.url} className="name">{item.name}</NavLink>
                   <div className="position text-nowrap">{item.position}</div>
                 </div>
               </div>

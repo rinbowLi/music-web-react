@@ -21,6 +21,7 @@ export const HotRadioWrapper = styled.div`
         width: 160px;
         margin-left: 8px;
         .name {
+          display:block;
           color: #000;
           font-weight: 700;
           margin-top: 3px;

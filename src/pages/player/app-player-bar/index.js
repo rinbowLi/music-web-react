@@ -49,6 +49,7 @@ export default memo(function AppPlayerBar() {
 
   const picUrl = (currentSong.al && currentSong.al.picUrl) || "";
   const singerName = (currentSong.ar && currentSong.ar[0].name) || "";
+  const singerId = (currentSong.ar && currentSong.ar[0].id) || "";
   const duration = currentSong.dt || 0;
   const showDuration = formatMinuteSecond(duration);
 
@@ -174,7 +175,7 @@ export default memo(function AppPlayerBar() {
           <div className="info">
             <div className="song">
               <NavLink to={"/song?id=" + currentSong.id}><span className="song-name">{currentSong.name}</span></NavLink>
-              <a href="#/" className="singer-name">{singerName}</a>
+              <NavLink to={"/singer?id=" + singerId} className="singer-name">{singerName}</NavLink>
             </div>
             <div className="progress">
               <Slider value={progress} onChange={handleChange} onAfterChange={handleAfterChange} tooltipVisible={false} />
